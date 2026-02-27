@@ -1,0 +1,1905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="theme-color" content="#0a0014"/>
+<meta name="description" content="RAJ X PANEL STORE – Premium Free Fire Gaming Tools, Sensitivity Tools, VIP Layouts & HUD Packs"/>
+<title>RAJ X PANEL STORE | Premium VIP Gaming Tools</title>
+<link rel="manifest" href="manifest.json"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{
+  --purple:#7d2ae8;
+  --purple-light:#9b4dff;
+  --purple-dark:#5a0fb5;
+  --neon:#b44fff;
+  --gold:#f5c518;
+  --cyan:#00f5ff;
+  --bg:#06000f;
+  --bg2:#0d0020;
+  --card:#12002a;
+  --card2:#1a003a;
+  --border:rgba(125,42,232,0.3);
+  --text:#e8d5ff;
+  --muted:#9d7fc2;
+  --green:#00ff88;
+  --red:#ff4466;
+  --font-head:'Orbitron',monospace;
+  --font-body:'Rajdhani',sans-serif;
+  --font-mono:'Space Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:16px;overflow-x:hidden;min-height:100vh;}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--bg2);}
+::-webkit-scrollbar-thumb{background:var(--purple);border-radius:3px;}
+
+/* ANIMATED BACKGROUND */
+body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:
+  radial-gradient(ellipse 60% 40% at 20% 10%,rgba(125,42,232,0.15) 0%,transparent 70%),
+  radial-gradient(ellipse 40% 30% at 80% 80%,rgba(0,245,255,0.06) 0%,transparent 70%),
+  radial-gradient(ellipse 50% 50% at 50% 50%,rgba(180,79,255,0.04) 0%,transparent 100%);
+pointer-events:none;z-index:0;}
+
+/* FLOATING PARTICLES */
+.particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
+.particle{position:absolute;width:2px;height:2px;background:var(--purple);border-radius:50%;animation:float-particle linear infinite;opacity:0;}
+@keyframes float-particle{
+  0%{transform:translateY(100vh) rotate(0deg);opacity:0;}
+  10%{opacity:1;}
+  90%{opacity:1;}
+  100%{transform:translateY(-10vh) rotate(720deg);opacity:0;}
+}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;right:0;z-index:1000;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(6,0,15,0.85);border-bottom:1px solid var(--border);padding:0 20px;}
+.header-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px;}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+.logo-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--purple),var(--cyan));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;box-shadow:0 0 20px rgba(125,42,232,0.5);}
+.logo-text{font-family:var(--font-head);font-size:14px;font-weight:900;background:linear-gradient(90deg,var(--purple-light),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1;}
+.logo-sub{font-size:9px;color:var(--muted);font-family:var(--font-body);letter-spacing:2px;-webkit-text-fill-color:var(--muted);}
+.header-nav{display:flex;align-items:center;gap:6px;}
+.nav-btn{background:transparent;border:1px solid var(--border);color:var(--text);padding:7px 14px;border-radius:8px;cursor:pointer;font-family:var(--font-body);font-size:13px;font-weight:600;transition:all 0.3s;white-space:nowrap;}
+.nav-btn:hover,.nav-btn.active{background:var(--purple);border-color:var(--purple);color:#fff;}
+.wallet-pill{background:rgba(125,42,232,0.2);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-family:var(--font-head);font-size:12px;color:var(--gold);display:flex;align-items:center;gap:6px;cursor:pointer;transition:all 0.3s;}
+.wallet-pill:hover{background:rgba(125,42,232,0.4);}
+.wallet-pill i{color:var(--gold);}
+.profile-btn{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--neon));border:2px solid var(--purple);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;position:relative;transition:all 0.3s;}
+.profile-btn:hover{box-shadow:0 0 15px var(--purple);}
+.profile-menu{position:absolute;top:calc(100% + 10px);right:0;background:var(--card2);border:1px solid var(--border);border-radius:14px;min-width:280px;overflow:hidden;display:none;z-index:2000;box-shadow:0 20px 60px rgba(0,0,0,0.5);}
+.profile-menu.show{display:block;}
+.profile-header{padding:16px;background:linear-gradient(135deg,var(--card),var(--card2));border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;}
+.profile-avatar-large{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--neon));display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;border:2px solid var(--purple);}
+.profile-info-name{font-family:var(--font-head);font-size:13px;color:#fff;}
+.profile-info-email{font-size:11px;color:var(--muted);}
+.profile-menu-list{padding:8px;}
+.profile-menu-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:8px;cursor:pointer;transition:all 0.2s;font-size:13px;color:var(--text);}
+.profile-menu-item:hover{background:rgba(125,42,232,0.2);}
+.profile-menu-item i{width:18px;color:var(--purple-light);font-size:13px;}
+.profile-menu-item.danger{color:var(--red);}
+.profile-menu-item.danger i{color:var(--red);}
+.profile-menu-divider{height:1px;background:var(--border);margin:6px 0;}
+
+/* ANNOUNCEMENT BAR */
+.announcement-bar{background:linear-gradient(90deg,var(--purple-dark),var(--purple),var(--purple-dark));text-align:center;padding:8px 20px;font-size:12px;font-weight:600;letter-spacing:1px;color:#fff;position:fixed;top:64px;left:0;right:0;z-index:999;border-bottom:1px solid var(--border);}
+.announcement-bar a{color:var(--gold);text-decoration:none;}
+
+/* MAIN CONTENT */
+main{padding-top:100px;position:relative;z-index:1;}
+
+/* HERO SECTION */
+.hero{padding:60px 20px 40px;text-align:center;max-width:1400px;margin:0 auto;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(125,42,232,0.15);border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-size:11px;letter-spacing:2px;color:var(--neon);margin-bottom:20px;text-transform:uppercase;}
+.hero-badge i{color:var(--gold);}
+.hero-title{font-family:var(--font-head);font-size:clamp(28px,6vw,64px);font-weight:900;line-height:1.1;margin-bottom:16px;}
+.hero-title .line1{display:block;background:linear-gradient(90deg,#fff,var(--text));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-title .line2{display:block;background:linear-gradient(90deg,var(--purple-light),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none;}
+.hero-subtitle{color:var(--muted);font-size:clamp(14px,2.5vw,18px);margin-bottom:30px;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.6;}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;}
+.btn-primary{background:linear-gradient(135deg,var(--purple),var(--neon));border:none;color:#fff;padding:14px 28px;border-radius:12px;font-family:var(--font-head);font-size:13px;font-weight:700;cursor:pointer;transition:all 0.3s;letter-spacing:1px;position:relative;overflow:hidden;}
+.btn-primary::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);transition:left 0.5s;}
+.btn-primary:hover::before{left:100%;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(125,42,232,0.5);}
+.btn-secondary{background:transparent;border:1px solid var(--border);color:var(--text);padding:14px 28px;border-radius:12px;font-family:var(--font-head);font-size:13px;cursor:pointer;transition:all 0.3s;}
+.btn-secondary:hover{border-color:var(--purple);color:var(--purple-light);background:rgba(125,42,232,0.1);}
+
+/* STATS BAR */
+.stats-bar{background:rgba(125,42,232,0.08);border:1px solid var(--border);border-radius:16px;padding:16px 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;max-width:700px;margin:0 auto 50px;text-align:center;}
+.stat-item{padding:10px;}
+.stat-item+.stat-item{border-left:1px solid var(--border);}
+.stat-num{font-family:var(--font-head);font-size:20px;color:var(--purple-light);font-weight:700;}
+.stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+
+/* SECTION COMMON */
+.section{padding:50px 20px;max-width:1400px;margin:0 auto;}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:30px;flex-wrap:wrap;gap:12px;}
+.section-title{font-family:var(--font-head);font-size:clamp(18px,3vw,26px);font-weight:700;display:flex;align-items:center;gap:12px;}
+.section-title .tag{font-size:11px;background:var(--purple);padding:4px 10px;border-radius:20px;color:#fff;font-family:var(--font-body);letter-spacing:1px;}
+
+/* DISCOUNT BANNER */
+.discount-banner{background:linear-gradient(135deg,rgba(125,42,232,0.2),rgba(0,245,255,0.08));border:1px solid var(--border);border-radius:16px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:40px;}
+.discount-left{display:flex;align-items:center;gap:14px;}
+.discount-icon{font-size:32px;}
+.discount-text h3{font-family:var(--font-head);font-size:16px;color:var(--gold);}
+.discount-text p{font-size:12px;color:var(--muted);}
+.yt-btn{background:#ff0000;border:none;color:#fff;padding:10px 20px;border-radius:10px;font-family:var(--font-head);font-size:12px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all 0.3s;}
+.yt-btn:hover{background:#cc0000;transform:translateY(-2px);}
+
+/* PRODUCT GRID */
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;}
+.product-card{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:all 0.3s;position:relative;cursor:pointer;}
+.product-card:hover{transform:translateY(-6px);border-color:var(--purple);box-shadow:0 20px 60px rgba(125,42,232,0.25);}
+.product-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--cyan));opacity:0;transition:opacity 0.3s;}
+.product-card:hover::before{opacity:1;}
+.product-thumb{width:100%;height:160px;background:linear-gradient(135deg,var(--bg2),var(--card2));display:flex;align-items:center;justify-content:center;font-size:50px;position:relative;overflow:hidden;}
+.product-thumb .thumb-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(125,42,232,0.2),rgba(0,245,255,0.05));display:flex;align-items:center;justify-content:center;font-size:60px;opacity:0.5;}
+.product-thumb .platform-badge{position:absolute;top:10px;right:10px;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;font-family:var(--font-head);}
+.badge-root{background:rgba(255,68,102,0.2);border:1px solid rgba(255,68,102,0.4);color:#ff4466;}
+.badge-nonroot{background:rgba(0,180,255,0.2);border:1px solid rgba(0,180,255,0.4);color:#00b4ff;}
+.badge-ios{background:rgba(245,197,24,0.2);border:1px solid rgba(245,197,24,0.4);color:#f5c518;}
+.badge-pc{background:rgba(0,255,136,0.2);border:1px solid rgba(0,255,136,0.4);color:#00ff88;}
+.product-body{padding:16px;}
+.product-name{font-family:var(--font-head);font-size:14px;color:#fff;margin-bottom:6px;}
+.product-desc{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:12px;}
+.product-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+.product-tag{background:rgba(125,42,232,0.15);border:1px solid rgba(125,42,232,0.3);color:var(--purple-light);padding:3px 8px;border-radius:4px;font-size:10px;font-weight:600;}
+.price-options{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+.price-row{display:flex;align-items:center;justify-content:space-between;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;transition:all 0.2s;cursor:pointer;}
+.price-row:hover,.price-row.selected{border-color:var(--purple);background:rgba(125,42,232,0.15);}
+.price-label{font-size:13px;color:var(--text);font-weight:600;}
+.price-value{font-family:var(--font-head);font-size:14px;color:var(--gold);}
+.product-actions{display:flex;gap:8px;}
+.buy-btn{flex:1;background:linear-gradient(135deg,var(--purple),var(--neon));border:none;color:#fff;padding:11px;border-radius:10px;font-family:var(--font-head);font-size:12px;cursor:pointer;transition:all 0.3s;letter-spacing:1px;}
+.buy-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(125,42,232,0.4);}
+.demo-btn{background:transparent;border:1px solid var(--border);color:var(--text);padding:11px 14px;border-radius:10px;cursor:pointer;transition:all 0.3s;font-size:12px;}
+.demo-btn:hover{border-color:var(--cyan);color:var(--cyan);}
+
+/* CATEGORY TABS */
+.cat-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:30px;}
+.cat-tab{background:var(--card);border:1px solid var(--border);color:var(--muted);padding:8px 18px;border-radius:10px;cursor:pointer;transition:all 0.3s;font-size:13px;font-weight:600;white-space:nowrap;}
+.cat-tab:hover,.cat-tab.active{background:var(--purple);border-color:var(--purple);color:#fff;}
+
+/* WALLET SECTION */
+.wallet-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:30px;}
+.wallet-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;text-align:center;}
+.wallet-card h4{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.wallet-card .amount{font-family:var(--font-head);font-size:28px;color:var(--green);margin-bottom:12px;}
+.wallet-card .amount.locked{color:var(--red);}
+
+/* SPIN WHEEL */
+.spin-section{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:30px;text-align:center;margin-bottom:40px;position:relative;overflow:hidden;}
+.spin-section::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 50% 50%,rgba(125,42,232,0.1),transparent 70%);pointer-events:none;}
+.wheel-container{position:relative;width:240px;height:240px;margin:0 auto 20px;}
+.wheel{width:100%;height:100%;border-radius:50%;position:relative;transition:transform 3s cubic-bezier(0.2,0.8,0.3,1);border:4px solid var(--purple);box-shadow:0 0 30px rgba(125,42,232,0.5),inset 0 0 30px rgba(0,0,0,0.5);}
+.wheel-pointer{position:absolute;top:-20px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-bottom:24px solid var(--red);filter:drop-shadow(0 0 6px var(--red));z-index:10;}
+.spin-btn{background:linear-gradient(135deg,var(--purple),var(--neon));border:none;color:#fff;padding:14px 32px;border-radius:14px;font-family:var(--font-head);font-size:14px;cursor:pointer;transition:all 0.3s;letter-spacing:1px;margin-bottom:10px;}
+.spin-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(125,42,232,0.5);}
+.spin-btn:disabled{opacity:0.5;cursor:not-allowed;}
+
+/* MODALS */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:2000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);}
+.modal-overlay.show{display:flex;}
+.modal{background:var(--card2);border:1px solid var(--border);border-radius:20px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;animation:modal-in 0.3s ease;}
+@keyframes modal-in{from{opacity:0;transform:scale(0.9) translateY(20px);}to{opacity:1;transform:scale(1) translateY(0);}}
+.modal-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.modal-title{font-family:var(--font-head);font-size:16px;color:#fff;}
+.modal-close{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:18px;transition:color 0.2s;}
+.modal-close:hover{color:#fff;}
+.modal-body{padding:24px;}
+.form-group{margin-bottom:16px;}
+.form-label{display:block;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;font-weight:600;}
+.form-input{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;color:var(--text);font-family:var(--font-body);font-size:14px;transition:border-color 0.3s;outline:none;}
+.form-input:focus{border-color:var(--purple);}
+.form-input::placeholder{color:rgba(157,127,194,0.5);}
+select.form-input{cursor:pointer;}
+.modal-footer{padding:16px 24px;border-top:1px solid var(--border);display:flex;gap:10px;flex-wrap:wrap;}
+.btn-full{flex:1;background:linear-gradient(135deg,var(--purple),var(--neon));border:none;color:#fff;padding:13px;border-radius:10px;font-family:var(--font-head);font-size:13px;cursor:pointer;transition:all 0.3s;letter-spacing:1px;}
+.btn-full:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(125,42,232,0.4);}
+.btn-outline{flex:1;background:transparent;border:1px solid var(--border);color:var(--text);padding:13px;border-radius:10px;font-family:var(--font-head);font-size:12px;cursor:pointer;transition:all 0.3s;}
+.btn-outline:hover{border-color:var(--purple);color:var(--purple-light);}
+
+/* AUTH MODAL */
+.auth-tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:20px;}
+.auth-tab{flex:1;padding:12px;text-align:center;cursor:pointer;font-family:var(--font-head);font-size:13px;color:var(--muted);border-bottom:2px solid transparent;transition:all 0.3s;}
+.auth-tab.active{color:var(--purple-light);border-bottom-color:var(--purple);}
+.social-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:12px;border:1px solid var(--border);border-radius:10px;background:var(--bg2);color:var(--text);cursor:pointer;font-size:14px;font-family:var(--font-body);font-weight:600;transition:all 0.3s;margin-bottom:16px;}
+.social-btn:hover{border-color:var(--purple);background:rgba(125,42,232,0.1);}
+.divider{display:flex;align-items:center;gap:10px;margin-bottom:16px;color:var(--muted);font-size:12px;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* ORDER CARDS */
+.order-list{display:flex;flex-direction:column;gap:12px;}
+.order-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.order-info h4{font-size:14px;color:#fff;font-weight:600;}
+.order-info p{font-size:12px;color:var(--muted);}
+.order-status{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1px;}
+.status-pending{background:rgba(245,197,24,0.2);color:var(--gold);border:1px solid rgba(245,197,24,0.3);}
+.status-approved{background:rgba(0,255,136,0.15);color:var(--green);border:1px solid rgba(0,255,136,0.3);}
+.status-rejected{background:rgba(255,68,102,0.15);color:var(--red);border:1px solid rgba(255,68,102,0.3);}
+.tg-btn{background:linear-gradient(135deg,#0088cc,#00b4ff);border:none;color:#fff;padding:8px 14px;border-radius:8px;font-size:11px;font-family:var(--font-head);cursor:pointer;display:flex;align-items:center;gap:6px;transition:all 0.3s;}
+.tg-btn:hover{transform:translateY(-2px);}
+.tg-btn.locked{background:rgba(125,42,232,0.2);color:var(--muted);border:1px solid var(--border);cursor:not-allowed;}
+
+/* LIVE CHAT BUBBLE */
+.chat-bubble{position:fixed;bottom:80px;right:20px;z-index:900;}
+.chat-toggle{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--neon));border:none;color:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 25px rgba(125,42,232,0.5);transition:all 0.3s;animation:pulse-chat 2s infinite;}
+@keyframes pulse-chat{0%,100%{box-shadow:0 8px 25px rgba(125,42,232,0.5);}50%{box-shadow:0 8px 35px rgba(125,42,232,0.8),0 0 0 8px rgba(125,42,232,0.1);}}
+.chat-toggle:hover{transform:scale(1.1);}
+.chat-box{position:absolute;bottom:70px;right:0;width:320px;background:var(--card2);border:1px solid var(--border);border-radius:18px;overflow:hidden;display:none;box-shadow:0 20px 60px rgba(0,0,0,0.5);}
+.chat-box.show{display:flex;flex-direction:column;}
+.chat-head{background:linear-gradient(135deg,var(--purple-dark),var(--purple));padding:14px 16px;display:flex;align-items:center;gap:10px;}
+.chat-head-info h4{font-size:13px;color:#fff;font-family:var(--font-head);}
+.chat-head-info p{font-size:11px;color:rgba(255,255,255,0.7);}
+.online-dot{width:8px;height:8px;background:var(--green);border-radius:50%;animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.chat-messages{height:220px;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;}
+.chat-msg{max-width:80%;padding:8px 12px;border-radius:12px;font-size:12px;line-height:1.5;}
+.chat-msg.admin{background:rgba(125,42,232,0.2);border:1px solid rgba(125,42,232,0.3);align-self:flex-start;}
+.chat-msg.user{background:var(--purple);align-self:flex-end;color:#fff;}
+.chat-input-row{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--border);}
+.chat-input{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-size:12px;outline:none;font-family:var(--font-body);}
+.chat-send{background:var(--purple);border:none;color:#fff;width:34px;height:34px;border-radius:8px;cursor:pointer;font-size:14px;transition:all 0.2s;}
+.chat-send:hover{background:var(--neon);}
+
+/* NOTIFICATION */
+.notification{position:fixed;top:100px;right:20px;z-index:3000;background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:14px 18px;min-width:280px;max-width:350px;display:flex;align-items:flex-start;gap:12px;box-shadow:0 10px 40px rgba(0,0,0,0.5);transform:translateX(400px);transition:transform 0.4s ease;}
+.notification.show{transform:translateX(0);}
+.notification.success .notif-icon{color:var(--green);}
+.notification.error .notif-icon{color:var(--red);}
+.notification.info .notif-icon{color:var(--cyan);}
+.notif-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.notif-content h4{font-size:13px;color:#fff;font-weight:700;margin-bottom:3px;}
+.notif-content p{font-size:12px;color:var(--muted);}
+
+/* APP INSTALL BANNER */
+.install-banner{background:linear-gradient(135deg,rgba(125,42,232,0.15),rgba(0,245,255,0.05));border:1px solid var(--border);border-radius:14px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:30px;}
+.install-banner-left{display:flex;align-items:center;gap:12px;}
+.install-banner h4{font-family:var(--font-head);font-size:13px;color:#fff;}
+.install-banner p{font-size:11px;color:var(--muted);}
+.install-btn{background:var(--purple);border:none;color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-family:var(--font-head);cursor:pointer;white-space:nowrap;transition:all 0.3s;}
+.install-btn:hover{background:var(--neon);}
+
+/* REFER & EARN */
+.refer-card{background:linear-gradient(135deg,var(--card),rgba(125,42,232,0.1));border:1px solid var(--border);border-radius:18px;padding:24px;text-align:center;}
+.refer-amount{font-family:var(--font-head);font-size:36px;color:var(--gold);margin:12px 0;}
+.refer-link-box{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:12px;font-family:var(--font-mono);color:var(--muted);word-break:break-all;}
+.copy-btn{background:var(--purple);border:none;color:#fff;padding:8px 14px;border-radius:8px;font-size:11px;cursor:pointer;flex-shrink:0;transition:all 0.3s;}
+.copy-btn:hover{background:var(--neon);}
+
+/* REDEEM */
+.redeem-row{display:flex;gap:10px;}
+.redeem-input{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;color:var(--text);font-family:var(--font-mono);font-size:14px;outline:none;transition:border-color 0.3s;}
+.redeem-input:focus{border-color:var(--purple);}
+.redeem-btn{background:linear-gradient(135deg,var(--purple),var(--neon));border:none;color:#fff;padding:12px 20px;border-radius:10px;font-family:var(--font-head);font-size:12px;cursor:pointer;white-space:nowrap;transition:all 0.3s;}
+.redeem-btn:hover{transform:translateY(-2px);}
+
+/* GUIDE SECTION */
+.guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
+.guide-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;text-align:center;}
+.guide-num{font-family:var(--font-head);font-size:28px;color:var(--purple-light);margin-bottom:10px;}
+.guide-card h4{font-size:14px;color:#fff;margin-bottom:8px;font-weight:600;}
+.guide-card p{font-size:12px;color:var(--muted);line-height:1.6;}
+
+/* FOOTER */
+footer{background:var(--card);border-top:1px solid var(--border);padding:40px 20px 20px;margin-top:60px;}
+.footer-inner{max-width:1400px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;margin-bottom:30px;}
+.footer-brand .logo{margin-bottom:12px;}
+.footer-brand p{font-size:12px;color:var(--muted);line-height:1.7;}
+.footer-col h4{font-family:var(--font-head);font-size:13px;color:var(--purple-light);margin-bottom:14px;letter-spacing:1px;}
+.footer-col a{display:block;color:var(--muted);font-size:13px;margin-bottom:8px;text-decoration:none;transition:color 0.2s;}
+.footer-col a:hover{color:var(--purple-light);}
+.footer-bottom{border-top:1px solid var(--border);padding-top:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.footer-bottom p{font-size:11px;color:var(--muted);}
+.social-links{display:flex;gap:10px;}
+.social-link{width:32px;height:32px;border-radius:50%;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px;text-decoration:none;transition:all 0.3s;}
+.social-link:hover{background:var(--purple);border-color:var(--purple);color:#fff;}
+
+/* MAINTENANCE */
+.maintenance-overlay{display:none;position:fixed;inset:0;background:var(--bg);z-index:9999;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;}
+.maintenance-overlay.show{display:flex;}
+
+/* TABS/SECTIONS */
+.tab-section{display:none;}
+.tab-section.active{display:block;}
+
+/* DASHBOARD */
+.dash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:30px;}
+.dash-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;text-align:center;}
+.dash-card .icon{font-size:24px;margin-bottom:8px;}
+.dash-card h4{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.dash-card .val{font-family:var(--font-head);font-size:22px;color:var(--purple-light);}
+
+/* UPI PAYMENT */
+.upi-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;text-align:center;}
+.qr-placeholder{width:180px;height:180px;background:#fff;border-radius:12px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.qr-placeholder img{width:100%;height:100%;object-fit:contain;}
+.upi-id{font-family:var(--font-mono);font-size:14px;color:var(--gold);background:var(--bg2);padding:10px 16px;border-radius:8px;display:inline-block;margin-bottom:16px;}
+.amount-options{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:16px;}
+.amount-chip{background:var(--bg2);border:1px solid var(--border);color:var(--text);padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;transition:all 0.2s;}
+.amount-chip:hover,.amount-chip.selected{background:var(--purple);border-color:var(--purple);color:#fff;}
+
+/* LANG */
+.lang-switch{display:flex;gap:6px;}
+.lang-btn{background:var(--card);border:1px solid var(--border);color:var(--muted);padding:4px 10px;border-radius:6px;font-size:11px;cursor:pointer;transition:all 0.2s;}
+.lang-btn.active,.lang-btn:hover{background:var(--purple);border-color:var(--purple);color:#fff;}
+
+/* BOTTOM NAV (mobile) */
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:800;background:rgba(6,0,15,0.95);backdrop-filter:blur(20px);border-top:1px solid var(--border);padding:8px 0;}
+.bottom-nav-inner{display:flex;justify-content:space-around;max-width:500px;margin:0 auto;}
+.bnav-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:4px 12px;border-radius:8px;transition:all 0.2s;color:var(--muted);font-size:10px;font-weight:600;letter-spacing:0.5px;border:none;background:transparent;}
+.bnav-item i{font-size:18px;}
+.bnav-item.active,.bnav-item:hover{color:var(--purple-light);}
+
+/* UPI INSTRUCTION */
+.upi-steps{text-align:left;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px;margin-top:14px;}
+.upi-steps p{font-size:12px;color:var(--muted);margin-bottom:6px;line-height:1.6;}
+.upi-steps strong{color:var(--text);}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .header-nav .nav-btn{display:none;}
+  .bottom-nav{display:block;}
+  main{padding-bottom:70px;}
+  .stats-bar{grid-template-columns:repeat(2,1fr);}
+  .stats-bar .stat-item:nth-child(2){border-left:1px solid var(--border);}
+  .stats-bar .stat-item:nth-child(3){border-left:none;border-top:1px solid var(--border);}
+  .stats-bar .stat-item:nth-child(4){border-top:1px solid var(--border);}
+  .chat-bubble{bottom:90px;}
+  .product-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:480px){
+  .product-grid{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr;}
+}
+
+/* WHEEL SEGMENTS */
+.wheel-svg{border-radius:50%;width:100%;height:100%;}
+
+/* PURCHASE INFO BOX */
+.purchase-info{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:16px;}
+.purchase-info-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:13px;}
+.purchase-info-row:last-child{margin-bottom:0;font-weight:700;border-top:1px solid var(--border);padding-top:8px;margin-top:8px;}
+.purchase-info-row .key{color:var(--muted);}
+.purchase-info-row .val{color:#fff;}
+.purchase-info-row .val.price{color:var(--gold);font-family:var(--font-head);}
+.purchase-info-row .val.balance{color:var(--green);}
+.purchase-info-row .val.insufficient{color:var(--red);}
+
+/* PENDING MESSAGE */
+.pending-msg{background:rgba(245,197,24,0.08);border:1px solid rgba(245,197,24,0.3);border-radius:12px;padding:16px;text-align:center;}
+.pending-msg i{font-size:32px;color:var(--gold);margin-bottom:10px;}
+.pending-msg h4{color:var(--gold);font-family:var(--font-head);margin-bottom:6px;}
+.pending-msg p{font-size:12px;color:var(--muted);line-height:1.6;}
+
+/* LANG CONTENT TOGGLE */
+[data-lang]{display:none;}
+[data-lang].visible{display:block;}
+
+/* SURPRISE MODAL */
+.surprise-content{text-align:center;padding:20px;}
+.surprise-emoji{font-size:60px;margin-bottom:16px;animation:bounce 1s infinite;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+</style>
+</head>
+<body>
+<!-- PARTICLES -->
+<div class="particles" id="particles"></div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#" onclick="showSection('home')">
+      <div class="logo-icon"><i class="fas fa-gamepad"></i></div>
+      <div>
+        <div class="logo-text">RAJ X PANEL STORE</div>
+        <div class="logo-sub">PREMIUM VIP TOOLS</div>
+      </div>
+    </a>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+      <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('hi')">HI</button>
+        <button class="lang-btn" onclick="setLang('bn')">BN</button>
+      </div>
+      <div class="header-nav">
+        <button class="nav-btn" onclick="showSection('home')"><i class="fas fa-home"></i> Home</button>
+        <button class="nav-btn" onclick="showSection('shop')"><i class="fas fa-store"></i> Shop</button>
+        <button class="nav-btn" onclick="requireAuth('orders')"><i class="fas fa-box"></i> Orders</button>
+        <button class="nav-btn" onclick="requireAuth('dashboard')"><i class="fas fa-tachometer-alt"></i> Dashboard</button>
+      </div>
+      <div class="wallet-pill" onclick="requireAuth('wallet')" id="walletPill" style="display:none;">
+        <i class="fas fa-wallet"></i>
+        <span id="walletBalance">₹0.00</span>
+      </div>
+      <div id="authBtns" style="display:flex;gap:6px;">
+        <button class="nav-btn" onclick="openModal('loginModal')">Login</button>
+        <button class="btn-primary" style="padding:8px 16px;font-size:12px;" onclick="openModal('loginModal')">Register</button>
+      </div>
+      <div id="profileBtnWrap" style="display:none;position:relative;">
+        <div class="profile-btn" onclick="toggleProfileMenu()" id="profileBtn">
+          <span id="profileInitial">R</span>
+        </div>
+        <div class="profile-menu" id="profileMenu">
+          <div class="profile-header">
+            <div class="profile-avatar-large" id="profileAvatarLarge">R</div>
+            <div>
+              <div class="profile-info-name" id="profileMenuName">User</div>
+              <div class="profile-info-email" id="profileMenuEmail">user@email.com</div>
+            </div>
+          </div>
+          <div class="profile-menu-list">
+            <div class="profile-menu-item" onclick="requireAuth('dashboard')"><i class="fas fa-tachometer-alt"></i> My Dashboard</div>
+            <div class="profile-menu-item" onclick="requireAuth('orders')"><i class="fas fa-box-open"></i> My Orders</div>
+            <div class="profile-menu-item" onclick="requireAuth('wallet')"><i class="fas fa-wallet"></i> My Wallet</div>
+            <div class="profile-menu-item" onclick="openModal('editProfileModal')"><i class="fas fa-user-edit"></i> Edit Profile</div>
+            <div class="profile-menu-item" onclick="openModal('editProfileModal')"><i class="fas fa-camera"></i> Change Profile Photo</div>
+            <div class="profile-menu-item" onclick="openModal('editProfileModal')"><i class="fas fa-phone"></i> Add Phone Number</div>
+            <div class="profile-menu-item" onclick="openModal('editProfileModal')"><i class="fab fa-instagram"></i> Add Instagram ID</div>
+            <div class="profile-menu-item" onclick="openModal('editProfileModal')"><i class="fab fa-facebook"></i> Add Facebook ID</div>
+            <div class="profile-menu-item" onclick="openModal('editProfileModal')"><i class="fab fa-youtube"></i> Add YouTube Channel</div>
+            <div class="profile-menu-item" onclick="openModal('editProfileModal')"><i class="fab fa-telegram"></i> Add Telegram ID</div>
+            <div class="profile-menu-item" onclick="openModal('editProfileModal')"><i class="fas fa-gamepad"></i> Add Free Fire UID</div>
+            <div class="profile-menu-item" onclick="openModal('editProfileModal')"><i class="fas fa-server"></i> Add Server Region</div>
+            <div class="profile-menu-item" onclick="requireAuth('referral')"><i class="fas fa-users"></i> Refer & Earn (₹20)</div>
+            <div class="profile-menu-item" onclick="requireAuth('spin')"><i class="fas fa-dharmachakra"></i> Lucky Wheel</div>
+            <div class="profile-menu-item" onclick="openModal('redeemModal')"><i class="fas fa-ticket-alt"></i> Redeem Code</div>
+            <div class="profile-menu-item" onclick="openTab('guide')"><i class="fas fa-book"></i> How to Use Guide</div>
+            <div class="profile-menu-item" onclick="openModal('supportModal')"><i class="fas fa-headset"></i> Help & Support</div>
+            <div class="profile-menu-item" onclick="openModal('feedbackModal')"><i class="fas fa-star"></i> Feedback & Proofs</div>
+            <div class="profile-menu-item" onclick="showSection('history')"><i class="fas fa-history"></i> Transaction History</div>
+            <div class="profile-menu-item" onclick="toggleDarkMode()"><i class="fas fa-moon"></i> Toggle Theme</div>
+            <div class="profile-menu-item" onclick="window.open('https://youtube.com/@aistorywala-c0?si=OqmVRulE2MWOfHko','_blank')"><i class="fab fa-youtube"></i> YouTube Channel</div>
+            <div class="profile-menu-item" onclick="window.open('https://instagram.com/raj_panel_live','_blank')"><i class="fab fa-instagram"></i> Instagram</div>
+            <div class="profile-menu-item" onclick="showSection('terms')"><i class="fas fa-shield-alt"></i> Terms & Conditions</div>
+            <div class="profile-menu-item" onclick="showSection('privacy')"><i class="fas fa-lock"></i> Privacy Policy</div>
+            <div class="profile-menu-divider"></div>
+            <div class="profile-menu-item danger" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announcement-bar">
+  🔥 <span data-translate="announcement">Subscribe YouTube for 10% OFF on All Tools! Limited Time Offer!</span>
+  &nbsp;|&nbsp; 🚀 Admin Verified within 10-12 Minutes
+</div>
+
+<!-- MAIN -->
+<main>
+  <!-- HOME SECTION -->
+  <div class="tab-section active" id="sec-home">
+    <div class="hero section">
+      <!-- INSTALL BANNER -->
+      <div class="install-banner">
+        <div class="install-banner-left">
+          <i class="fas fa-mobile-alt" style="font-size:28px;color:var(--purple-light);"></i>
+          <div>
+            <h4>📱 Download RAJ X PANEL APP</h4>
+            <p>Faster access, Push Notifications & Exclusive App Deals</p>
+          </div>
+        </div>
+        <button class="install-btn" onclick="promptInstall()">📥 Install App</button>
+      </div>
+
+      <div class="hero-badge"><i class="fas fa-crown"></i> <span>INDIA'S #1 GAMING TOOL STORE</span></div>
+      <h1 class="hero-title">
+        <span class="line1">RAJ X PANEL STORE</span>
+        <span class="line2">Premium VIP Gaming Tools</span>
+      </h1>
+      <p class="hero-subtitle">Premium sensitivity tools, VIP HUD layouts, performance mods and coaching panels for Free Fire players. 100% Legal Gaming Enhancement.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="showSection('shop')"><i class="fas fa-store"></i> Browse All Tools</button>
+        <button class="btn-secondary" onclick="openTab('guide')"><i class="fas fa-play"></i> How It Works</button>
+      </div>
+      <div class="stats-bar">
+        <div class="stat-item"><div class="stat-num">5000+</div><div class="stat-label">Users</div></div>
+        <div class="stat-item"><div class="stat-num">98%</div><div class="stat-label">Satisfaction</div></div>
+        <div class="stat-item"><div class="stat-num">12min</div><div class="stat-label">Avg. Delivery</div></div>
+        <div class="stat-item"><div class="stat-num">24/7</div><div class="stat-label">Support</div></div>
+      </div>
+    </div>
+
+    <!-- YOUTUBE BANNER -->
+    <div class="section">
+      <div class="discount-banner">
+        <div class="discount-left">
+          <div class="discount-icon">🎁</div>
+          <div class="discount-text">
+            <h3>Subscribe YouTube → Get 10% OFF</h3>
+            <p>Subscribe to our YouTube channel and get instant 10% discount on all purchases</p>
+          </div>
+        </div>
+        <button class="yt-btn" onclick="window.open('https://www.youtube.com/@YOURCHANNELID','_blank')">
+          <i class="fab fa-youtube"></i> SUBSCRIBE NOW
+        </button>
+      </div>
+
+      <!-- FEATURED PRODUCTS -->
+      <div class="section-header">
+        <div class="section-title">⚡ Featured Tools <span class="tag">VIP</span></div>
+        <button class="btn-secondary" onclick="showSection('shop')" style="padding:8px 16px;font-size:12px;">View All →</button>
+      </div>
+      <div class="product-grid" id="featuredGrid"></div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">📖 How To Use</div>
+      </div>
+      <div class="guide-grid">
+        <div class="guide-card"><div class="guide-num">01</div><h4>Register & Login</h4><p>Create your account using Gmail or username/password to get started.</p></div>
+        <div class="guide-card"><div class="guide-num">02</div><h4>Add Money to Wallet</h4><p>Add cash via UPI (GPay, PhonePe, Paytm etc.) to your wallet balance.</p></div>
+        <div class="guide-card"><div class="guide-num">03</div><h4>Choose Your Panel</h4><p>Browse our categories and select the perfect tool for your device.</p></div>
+        <div class="guide-card"><div class="guide-num">04</div><h4>Wait 10-12 Mins</h4><p>Admin reviews your order. Get verified download link via Telegram.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOP SECTION -->
+  <div class="tab-section" id="sec-shop">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">🛒 All Products</div>
+        <div class="lang-switch">
+          <input type="text" placeholder="🔍 Search..." id="searchInput" class="form-input" style="width:180px;padding:8px 12px;font-size:13px;" oninput="filterProducts()"/>
+        </div>
+      </div>
+      <div class="cat-tabs" id="catTabs">
+        <button class="cat-tab active" onclick="filterCat(this,'all')">All</button>
+        <button class="cat-tab" onclick="filterCat(this,'root')">🤖 Android ROOT</button>
+        <button class="cat-tab" onclick="filterCat(this,'nonroot')">📱 Android Non-Root</button>
+        <button class="cat-tab" onclick="filterCat(this,'ios')">🍎 iPhone iOS</button>
+        <button class="cat-tab" onclick="filterCat(this,'pc')">💻 PC Panels</button>
+      </div>
+      <div class="product-grid" id="allProductGrid"></div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD SECTION -->
+  <div class="tab-section" id="sec-dashboard">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">📊 My Dashboard</div>
+      </div>
+      <div class="dash-grid">
+        <div class="dash-card"><div class="icon">💰</div><h4>Wallet Balance</h4><div class="val" id="dashWallet">₹0.00</div></div>
+        <div class="dash-card"><div class="icon">📦</div><h4>Total Orders</h4><div class="val" id="dashOrders">0</div></div>
+        <div class="dash-card"><div class="icon">✅</div><h4>Approved</h4><div class="val" id="dashApproved">0</div></div>
+        <div class="dash-card"><div class="icon">🔄</div><h4>Referrals</h4><div class="val" id="dashReferrals">0</div></div>
+      </div>
+
+      <!-- WALLET SECTION -->
+      <div class="section-header"><div class="section-title">💳 Wallet & Payments</div></div>
+      <div class="wallet-cards">
+        <div class="wallet-card">
+          <h4>Available Balance</h4>
+          <div class="amount" id="walletMain">₹0.00</div>
+          <button class="btn-primary" onclick="openModal('addCashModal')" style="padding:10px 20px;font-size:12px;width:100%;">+ Add Cash</button>
+        </div>
+        <div class="wallet-card">
+          <h4>Referral Bonus</h4>
+          <div class="amount locked" id="referralBonus">₹0.00</div>
+          <p style="font-size:11px;color:var(--muted);">🔒 Buy 10 items to unlock</p>
+        </div>
+        <div class="wallet-card">
+          <h4>Spin Winnings</h4>
+          <div class="amount" id="spinWinnings">₹0.00</div>
+          <button class="nav-btn" onclick="showSection('spin')" style="width:100%;font-size:12px;margin-top:8px;">Spin Wheel</button>
+        </div>
+      </div>
+
+      <!-- REDEEM CODE -->
+      <div class="section-header"><div class="section-title">🎟️ Redeem Code</div></div>
+      <div class="redeem-row">
+        <input type="text" class="redeem-input" id="redeemCodeInput" placeholder="Enter promo code..." style="text-transform:uppercase;"/>
+        <button class="redeem-btn" onclick="redeemCode()">APPLY</button>
+      </div>
+
+      <!-- REFER & EARN -->
+      <div class="section-header" style="margin-top:30px;"><div class="section-title">👥 Refer & Earn</div></div>
+      <div class="refer-card">
+        <p style="color:var(--muted);font-size:13px;">Share your referral link. Earn ₹20 when your friend buys 10 items!</p>
+        <div class="refer-amount">₹20 Per Referral</div>
+        <p style="font-size:11px;color:var(--muted);margin-bottom:14px;">⚠️ Bonus unlocks only after referee buys 10 items</p>
+        <div class="refer-link-box">
+          <span id="referralLink">Login to get your link</span>
+          <button class="copy-btn" onclick="copyReferral()">Copy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDERS SECTION -->
+  <div class="tab-section" id="sec-orders">
+    <div class="section">
+      <div class="section-header"><div class="section-title">📦 My Orders</div></div>
+      <div class="cat-tabs">
+        <button class="cat-tab active" onclick="filterOrders(this,'all')">All</button>
+        <button class="cat-tab" onclick="filterOrders(this,'pending')">🟡 Pending</button>
+        <button class="cat-tab" onclick="filterOrders(this,'approved')">🟢 Approved</button>
+        <button class="cat-tab" onclick="filterOrders(this,'rejected')">🔴 Rejected</button>
+      </div>
+      <div class="order-list" id="orderList">
+        <div style="text-align:center;padding:40px;color:var(--muted);">
+          <i class="fas fa-box-open" style="font-size:40px;margin-bottom:12px;display:block;"></i>
+          No orders yet. <a href="#" onclick="showSection('shop')" style="color:var(--purple-light);">Browse Shop →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPIN SECTION -->
+  <div class="tab-section" id="sec-spin">
+    <div class="section">
+      <div class="spin-section">
+        <h2 style="font-family:var(--font-head);font-size:22px;color:var(--purple-light);margin-bottom:6px;">🎡 LUCKY WHEEL</h2>
+        <p style="color:var(--muted);font-size:13px;margin-bottom:24px;">Spin & Win Discounts or Bonus Cash!</p>
+        <div class="wheel-container">
+          <div class="wheel-pointer"></div>
+          <canvas id="wheelCanvas" width="240" height="240"></canvas>
+        </div>
+        <button class="spin-btn" id="spinBtn" onclick="spinWheel()">
+          <i class="fas fa-dharmachakra"></i> SPIN NOW (2 FREE)
+        </button>
+        <p style="color:var(--muted);font-size:12px;">Next free spin in: <span style="color:var(--red);font-family:var(--font-mono);" id="spinTimer">23:59:59</span></p>
+        <p style="font-size:11px;color:rgba(157,127,194,0.6);margin-top:8px;">Win: ₹5 Bonus | ₹10 Bonus | 1%-10% Discount | Free Tool</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WALLET SECTION -->
+  <div class="tab-section" id="sec-wallet">
+    <div class="section">
+      <div class="section-header"><div class="section-title">💰 Add Cash to Wallet</div></div>
+      <div class="upi-box">
+        <h3 style="font-family:var(--font-head);font-size:16px;margin-bottom:16px;color:var(--purple-light);">Pay via UPI</h3>
+        <div class="qr-placeholder">
+          <!-- Replace qrcode.png with your QR code image -->
+          <img src="assets/qrcode.png" alt="UPI QR Code" onerror="this.parentNode.innerHTML='<div style=\'padding:20px;text-align:center;color:#333\'>QR Code<br>Replace qrcode.png</div>'"/>
+        </div>
+        <div class="upi-id" onclick="copyUPI()">📲 fvraj@fam &nbsp; <i class="fas fa-copy" style="font-size:12px;"></i></div>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:14px;">Select amount or enter custom amount:</p>
+        <div class="amount-options">
+          <div class="amount-chip" onclick="selectAmount(this,50)">₹50</div>
+          <div class="amount-chip" onclick="selectAmount(this,100)">₹100</div>
+          <div class="amount-chip" onclick="selectAmount(this,200)">₹200</div>
+          <div class="amount-chip" onclick="selectAmount(this,500)">₹500</div>
+          <div class="amount-chip" onclick="selectAmount(this,1000)">₹1000</div>
+        </div>
+        <input type="number" class="form-input" id="customAmount" placeholder="Custom Amount (₹)" style="margin-bottom:14px;text-align:center;font-size:18px;font-family:var(--font-head);"/>
+        <div class="upi-steps">
+          <p><strong>Step 1:</strong> Open GPay / PhonePe / Paytm / any UPI app</p>
+          <p><strong>Step 2:</strong> Scan QR or pay to UPI ID: <strong>fvraj@fam</strong></p>
+          <p><strong>Step 3:</strong> Take screenshot of payment confirmation</p>
+          <p><strong>Step 4:</strong> Click "I've Paid" below and submit screenshot</p>
+        </div>
+        <button class="btn-primary" onclick="openModal('paymentProofModal')" style="width:100%;margin-top:16px;padding:14px;">✅ I've Paid – Submit Proof</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- REFERRAL SECTION -->
+  <div class="tab-section" id="sec-referral">
+    <div class="section">
+      <div class="section-header"><div class="section-title">👥 Referral Dashboard</div></div>
+      <div class="refer-card" style="margin-bottom:20px;">
+        <p style="color:var(--muted);font-size:13px;margin-bottom:8px;">Your Referral Code</p>
+        <div class="refer-link-box" style="margin-bottom:14px;">
+          <span id="referralCode2">LOGIN FIRST</span>
+          <button class="copy-btn" onclick="copyReferral()">Copy Link</button>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;">
+          <div class="wallet-card"><h4>Total Referred</h4><div class="amount">0</div></div>
+          <div class="wallet-card"><h4>Earned</h4><div class="amount">₹0</div></div>
+        </div>
+      </div>
+      <div class="wallet-card">
+        <h4 style="text-align:left;margin-bottom:10px;">⚠️ Withdrawal Rules</h4>
+        <p style="font-size:12px;color:var(--muted);line-height:1.7;">• Referral bonus is <strong style="color:var(--red);">LOCKED</strong> until your referred friend buys 10 items.<br>• Withdrawal requires minimum 10 items purchased by you.<br>• Bonus is credited to wallet after unlock conditions are met.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORY SECTION -->
+  <div class="tab-section" id="sec-history">
+    <div class="section">
+      <div class="section-header"><div class="section-title">🕘 Transaction History</div></div>
+      <div class="cat-tabs">
+        <button class="cat-tab active" onclick="filterHistory(this,'all')">All</button>
+        <button class="cat-tab" onclick="filterHistory(this,'payment')">💳 Payments</button>
+        <button class="cat-tab" onclick="filterHistory(this,'purchase')">🛍️ Purchases</button>
+        <button class="cat-tab" onclick="filterHistory(this,'referral')">👥 Referral</button>
+      </div>
+      <div id="historyList">
+        <div style="text-align:center;padding:40px;color:var(--muted);">No transactions yet.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TERMS SECTION -->
+  <div class="tab-section" id="sec-terms">
+    <div class="section">
+      <div class="section-header"><div class="section-title">📜 Terms & Conditions</div></div>
+      <div class="wallet-card" style="text-align:left;padding:30px;line-height:1.8;">
+        <h3 style="font-family:var(--font-head);color:var(--purple-light);margin-bottom:16px;">RAJ X PANEL STORE – Terms & Conditions</h3>
+        <p style="color:var(--muted);font-size:13px;margin-bottom:12px;"><strong style="color:var(--text);">Last Updated:</strong> 2025 | <strong style="color:var(--text);">License:</strong> RJ-992026</p>
+        <h4 style="color:var(--text);margin:16px 0 8px;">1. Legal Products Only</h4>
+        <p style="font-size:13px;color:var(--muted);">RAJ X PANEL STORE exclusively sells legal gaming enhancement tools including HUD layouts, sensitivity configurations, performance optimization settings, and coaching panels. We strictly do NOT sell, promote, or support any form of cheating software, unauthorized modifications, exploit tools, or any software that violates game publishers' terms of service.</p>
+        <h4 style="color:var(--text);margin:16px 0 8px;">2. No Refund Policy</h4>
+        <p style="font-size:13px;color:var(--muted);">All sales are final. Digital products cannot be returned once delivered. In case of non-delivery within 2 hours, contact support immediately.</p>
+        <h4 style="color:var(--text);margin:16px 0 8px;">3. Account Responsibility</h4>
+        <p style="font-size:13px;color:var(--muted);">Users are responsible for their account credentials. Any misuse of purchased tools is solely the buyer's responsibility. We follow all applicable government and game regulations.</p>
+        <h4 style="color:var(--text);margin:16px 0 8px;">4. Copyright Notice</h4>
+        <p style="font-size:13px;color:var(--muted);">Produced by Raj. All content, branding, and tools are copyright protected under License RJ-992026. Unauthorized copying, redistribution, or reselling will result in immediate DMCA action and legal proceedings.</p>
+        <h4 style="color:var(--text);margin:16px 0 8px;">5. Wallet Policy</h4>
+        <p style="font-size:13px;color:var(--muted);">Wallet balances are non-transferable and non-refundable. Referral bonuses are locked until withdrawal conditions are met (10 items purchased). Admin reserves the right to adjust balances for fraudulent activity.</p>
+        <h4 style="color:var(--text);margin:16px 0 8px;">6. Delivery Timeline</h4>
+        <p style="font-size:13px;color:var(--muted);">Admin verification takes 10-12 minutes during business hours. After approval, the Telegram download link will be unlocked in your order details.</p>
+        <h4 style="color:var(--text);margin:16px 0 8px;">7. Compliance Statement</h4>
+        <p style="font-size:13px;color:var(--muted);">We follow all Government of India regulations and applicable game policies. NOTHING on this platform is illegal. All tools are designed for legitimate gaming performance enhancement only.</p>
+        <h4 style="color:var(--text);margin:16px 0 8px;">8. Dispute Resolution</h4>
+        <p style="font-size:13px;color:var(--muted);">In case of any disputes, contact our Help Center. Disputes must be raised within 24 hours of purchase. Jurisdiction: India.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRIVACY SECTION -->
+  <div class="tab-section" id="sec-privacy">
+    <div class="section">
+      <div class="section-header"><div class="section-title">🔒 Privacy Policy</div></div>
+      <div class="wallet-card" style="text-align:left;padding:30px;line-height:1.8;">
+        <h3 style="font-family:var(--font-head);color:var(--purple-light);margin-bottom:16px;">Privacy Policy</h3>
+        <p style="font-size:13px;color:var(--muted);">We collect: Name, Email, Phone, Instagram URL for order processing. Data is stored securely in Firebase. We never sell your personal data. Payment screenshots are used only for verification and deleted after 7 days. You may request data deletion by contacting support.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- GUIDE SECTION -->
+  <div class="tab-section" id="sec-guide">
+    <div class="section">
+      <div class="section-header"><div class="section-title">📖 Setup Guide & Videos</div></div>
+      <div class="guide-grid" style="margin-bottom:30px;">
+        <div class="guide-card"><div class="guide-num">01</div><h4>Register Account</h4><p>Go to Login → Register with your Gmail and create a password.</p></div>
+        <div class="guide-card"><div class="guide-num">02</div><h4>Add Money</h4><p>Click Wallet → Pay via UPI → Upload payment screenshot for verification.</p></div>
+        <div class="guide-card"><div class="guide-num">03</div><h4>Buy Panel</h4><p>Choose your platform (Android/iOS/PC), select duration, click BUY.</p></div>
+        <div class="guide-card"><div class="guide-num">04</div><h4>Fill Details</h4><p>Enter your name, phone & Instagram URL during checkout.</p></div>
+        <div class="guide-card"><div class="guide-num">05</div><h4>Wait for Admin</h4><p>Admin verifies within 10-12 mins. Check Order History for status.</p></div>
+        <div class="guide-card"><div class="guide-num">06</div><h4>Get Telegram Link</h4><p>Once approved, click the Telegram button in your order to download.</p></div>
+      </div>
+      <!-- VIDEO EMBEDS (replace with actual YouTube video IDs) -->
+      <div class="section-header"><div class="section-title">🎬 Tutorial Videos</div></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
+        <div class="wallet-card">
+          <h4 style="margin-bottom:10px;font-family:var(--font-head);font-size:13px;">How to Buy & Setup</h4>
+          <div style="background:var(--bg2);border-radius:10px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;cursor:pointer;" onclick="openYT('VIDEOID1')">
+            <i class="fab fa-youtube" style="font-size:40px;color:#ff0000;"></i>
+          </div>
+          <p style="font-size:11px;color:var(--muted);margin-top:8px;">Replace VIDEOID1 with your YouTube Video ID</p>
+        </div>
+        <div class="wallet-card">
+          <h4 style="margin-bottom:10px;font-family:var(--font-head);font-size:13px;">Android Setup Guide</h4>
+          <div style="background:var(--bg2);border-radius:10px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;cursor:pointer;" onclick="openYT('VIDEOID2')">
+            <i class="fab fa-youtube" style="font-size:40px;color:#ff0000;"></i>
+          </div>
+          <p style="font-size:11px;color:var(--muted);margin-top:8px;">Replace VIDEOID2 with your YouTube Video ID</p>
+        </div>
+        <div class="wallet-card">
+          <h4 style="margin-bottom:10px;font-family:var(--font-head);font-size:13px;">PC Setup Guide</h4>
+          <div style="background:var(--bg2);border-radius:10px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;cursor:pointer;" onclick="openYT('VIDEOID3')">
+            <i class="fab fa-youtube" style="font-size:40px;color:#ff0000;"></i>
+          </div>
+          <p style="font-size:11px;color:var(--muted);margin-top:8px;">Replace VIDEOID3 with your YouTube Video ID</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="logo" href="#">
+          <div class="logo-icon"><i class="fas fa-gamepad"></i></div>
+          <div>
+            <div class="logo-text">RAJ X PANEL STORE</div>
+            <div class="logo-sub">PREMIUM VIP TOOLS</div>
+          </div>
+        </a>
+        <p style="margin-top:12px;">India's #1 Premium Free Fire Gaming Enhancement Store. 100% Legal Tools. Verified by Raj. License RJ-992026.</p>
+        <div class="social-links" style="margin-top:14px;">
+          <a href="https://youtube.com/@YOURCHANNELID" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
+          <a href="https://instagram.com/YOURINSTA" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+          <a href="https://t.me/primebosslive" target="_blank" class="social-link"><i class="fab fa-telegram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="#" onclick="showSection('home')">Home</a>
+        <a href="#" onclick="showSection('shop')">Shop</a>
+        <a href="#" onclick="requireAuth('orders')">My Orders</a>
+        <a href="#" onclick="requireAuth('dashboard')">Dashboard</a>
+        <a href="#" onclick="showSection('guide')">Setup Guide</a>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <a href="#" onclick="showSection('shop');filterCat(null,'root')">Android Root</a>
+        <a href="#" onclick="showSection('shop');filterCat(null,'nonroot')">Android Non-Root</a>
+        <a href="#" onclick="showSection('shop');filterCat(null,'ios')">iPhone iOS</a>
+        <a href="#" onclick="showSection('shop');filterCat(null,'pc')">PC Panels</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#" onclick="showSection('terms')">Terms & Conditions</a>
+        <a href="#" onclick="showSection('privacy')">Privacy Policy</a>
+        <a href="#" onclick="openModal('supportModal')">Help Center</a>
+        <a href="#" onclick="openModal('feedbackModal')">Feedback</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 RAJ X PANEL STORE | Produced by Raj | License RJ-992026 | All Rights Reserved</p>
+      <p style="color:rgba(157,127,194,0.5);font-size:10px;">We follow all Govt & Game policies. Nothing is illegal.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <div class="bottom-nav-inner">
+    <button class="bnav-item active" onclick="showSection('home');this.parentNode.querySelectorAll('.bnav-item').forEach(b=>b.classList.remove('active'));this.classList.add('active')"><i class="fas fa-home"></i>Home</button>
+    <button class="bnav-item" onclick="showSection('shop');this.parentNode.querySelectorAll('.bnav-item').forEach(b=>b.classList.remove('active'));this.classList.add('active')"><i class="fas fa-store"></i>Shop</button>
+    <button class="bnav-item" onclick="requireAuth('orders');this.parentNode.querySelectorAll('.bnav-item').forEach(b=>b.classList.remove('active'));this.classList.add('active')"><i class="fas fa-box"></i>Orders</button>
+    <button class="bnav-item" onclick="requireAuth('spin');this.parentNode.querySelectorAll('.bnav-item').forEach(b=>b.classList.remove('active'));this.classList.add('active')"><i class="fas fa-dharmachakra"></i>Spin</button>
+    <button class="bnav-item" onclick="requireAuth('dashboard');this.parentNode.querySelectorAll('.bnav-item').forEach(b=>b.classList.remove('active'));this.classList.add('active')"><i class="fas fa-user"></i>Profile</button>
+  </div>
+</div>
+
+<!-- LIVE CHAT BUBBLE -->
+<div class="chat-bubble">
+  <div class="chat-box" id="chatBox">
+    <div class="chat-head">
+      <div class="profile-avatar-large" style="width:36px;height:36px;font-size:14px;"><i class="fas fa-headset"></i></div>
+      <div class="chat-head-info"><h4>RAJ Support</h4><p>Admin <span class="online-dot" style="display:inline-block;vertical-align:middle;margin-left:4px;"></span></p></div>
+      <button onclick="toggleChat()" style="background:transparent;border:none;color:#fff;margin-left:auto;cursor:pointer;"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-msg admin">👋 Welcome to RAJ X PANEL STORE! How can I help you?</div>
+      <div class="chat-msg admin">⏱️ Our admin responds within 10-12 minutes.</div>
+    </div>
+    <div class="chat-input-row">
+      <input type="text" class="chat-input" id="chatInput" placeholder="Type a message..." onkeypress="if(event.key==='Enter')sendChat()"/>
+      <button class="chat-send" onclick="sendChat()"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
+  <button class="chat-toggle" onclick="toggleChat()"><i class="fas fa-comments"></i></button>
+</div>
+
+<!-- NOTIFICATION -->
+<div class="notification" id="notification">
+  <div class="notif-icon"><i class="fas fa-info-circle"></i></div>
+  <div class="notif-content"><h4 id="notifTitle">Notification</h4><p id="notifMsg"></p></div>
+</div>
+
+<!-- ========== MODALS ========== -->
+
+<!-- AUTH MODAL -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">🎮 RAJ X PANEL STORE</div>
+      <button class="modal-close" onclick="closeModal('loginModal')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="auth-tabs">
+        <div class="auth-tab active" onclick="switchAuthTab('login',this)">Login</div>
+        <div class="auth-tab" onclick="switchAuthTab('register',this)">Register</div>
+      </div>
+      <!-- LOGIN -->
+      <div id="loginForm">
+        <button class="social-btn" onclick="googleLogin()"><i class="fab fa-google" style="color:#ea4335;"></i> Continue with Google</button>
+        <div class="divider">or login with email</div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" id="loginEmail" placeholder="your@email.com"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-input" id="loginPassword" placeholder="••••••••"/>
+        </div>
+        <p style="font-size:12px;color:var(--muted);text-align:right;cursor:pointer;" onclick="forgotPassword()">Forgot Password?</p>
+      </div>
+      <!-- REGISTER -->
+      <div id="registerForm" style="display:none;">
+        <button class="social-btn" onclick="googleLogin()"><i class="fab fa-google" style="color:#ea4335;"></i> Continue with Google</button>
+        <div class="divider">or register with email</div>
+        <div class="form-group">
+          <label class="form-label">Username</label>
+          <input type="text" class="form-input" id="regUsername" placeholder="Your gaming name"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" id="regEmail" placeholder="your@email.com"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password (min 6 chars)</label>
+          <input type="password" class="form-input" id="regPassword" placeholder="Create password"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Referral Code (Optional)</label>
+          <input type="text" class="form-input" id="regReferral" placeholder="Enter referral code if you have one"/>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-full" id="authSubmitBtn" onclick="submitAuth()">LOGIN</button>
+    </div>
+  </div>
+</div>
+
+<!-- BUY MODAL -->
+<div class="modal-overlay" id="buyModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="buyModalTitle">Purchase Tool</div>
+      <button class="modal-close" onclick="closeModal('buyModal')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="purchase-info" id="buyPurchaseInfo"></div>
+      <div class="form-group">
+        <label class="form-label">Your Name *</label>
+        <input type="text" class="form-input" id="buyName" placeholder="Full Name"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Phone Number *</label>
+        <input type="tel" class="form-input" id="buyPhone" placeholder="10-digit mobile number"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Instagram Profile URL *</label>
+        <input type="url" class="form-input" id="buyInsta" placeholder="https://instagram.com/yourprofile"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Free Fire UID (Optional)</label>
+        <input type="text" class="form-input" id="buyUID" placeholder="Your FF UID"/>
+      </div>
+      <div id="buyInsufficientMsg" style="display:none;">
+        <div style="background:rgba(255,68,102,0.1);border:1px solid rgba(255,68,102,0.3);border-radius:10px;padding:14px;text-align:center;margin-bottom:14px;">
+          <i class="fas fa-exclamation-triangle" style="color:var(--red);font-size:20px;margin-bottom:8px;display:block;"></i>
+          <p style="color:var(--red);font-size:13px;font-weight:600;">Insufficient Balance!</p>
+          <p style="color:var(--muted);font-size:12px;">Add cash to your wallet first.</p>
+        </div>
+        <button class="btn-full" onclick="closeModal('buyModal');requireAuth('wallet')">+ Add Cash to Wallet</button>
+      </div>
+    </div>
+    <div class="modal-footer" id="buyModalFooter">
+      <button class="btn-outline" onclick="closeModal('buyModal')">Cancel</button>
+      <button class="btn-full" id="confirmBuyBtn" onclick="confirmPurchase()">✅ CONFIRM PURCHASE</button>
+    </div>
+  </div>
+</div>
+
+<!-- PENDING SUCCESS MODAL -->
+<div class="modal-overlay" id="pendingModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">✅ Order Placed!</div>
+      <button class="modal-close" onclick="closeModal('pendingModal')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="pending-msg">
+        <i class="fas fa-clock"></i>
+        <h4>Waiting for Admin Verification</h4>
+        <p>Your order has been placed successfully!<br>Please wait <strong style="color:var(--gold);">10-12 minutes</strong> for admin to verify and approve your order.<br><br>You can check your order status in the Order History page.</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-full" onclick="closeModal('pendingModal');requireAuth('orders')"><i class="fas fa-box"></i> View My Orders</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD CASH MODAL -->
+<div class="modal-overlay" id="addCashModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">💰 Add Cash</div>
+      <button class="modal-close" onclick="closeModal('addCashModal')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <p style="color:var(--muted);font-size:13px;margin-bottom:16px;">Pay via UPI and submit proof for instant wallet top-up.</p>
+      <button class="btn-full" onclick="closeModal('addCashModal');showSection('wallet')">Open UPI Payment Page</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAYMENT PROOF MODAL -->
+<div class="modal-overlay" id="paymentProofModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">📸 Submit Payment Proof</div>
+      <button class="modal-close" onclick="closeModal('paymentProofModal')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Amount Paid (₹) *</label>
+        <input type="number" class="form-input" id="proofAmount" placeholder="Enter amount"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">UTR / Transaction ID *</label>
+        <input type="text" class="form-input" id="proofUTR" placeholder="12-digit UTR number"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Payment Screenshot *</label>
+        <input type="file" class="form-input" id="proofScreenshot" accept="image/*"/>
+      </div>
+      <div style="background:rgba(245,197,24,0.08);border:1px solid rgba(245,197,24,0.3);border-radius:10px;padding:12px;font-size:12px;color:var(--muted);">
+        ⚠️ After submitting proof, admin will verify and credit your wallet within 10-15 minutes.
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-outline" onclick="closeModal('paymentProofModal')">Cancel</button>
+      <button class="btn-full" onclick="submitPaymentProof()">Submit Proof</button>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT PROFILE MODAL -->
+<div class="modal-overlay" id="editProfileModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">✏️ Edit Profile</div>
+      <button class="modal-close" onclick="closeModal('editProfileModal')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <div style="text-align:center;margin-bottom:20px;">
+        <div class="profile-avatar-large" style="width:70px;height:70px;font-size:26px;margin:0 auto 10px;" id="editAvatarPreview">R</div>
+        <label for="profilePhotoInput" style="cursor:pointer;color:var(--purple-light);font-size:13px;"><i class="fas fa-camera"></i> Change Photo</label>
+        <input type="file" id="profilePhotoInput" accept="image/*" style="display:none;" onchange="previewPhoto(this)"/>
+      </div>
+      <div class="form-group"><label class="form-label">Display Name</label><input type="text" class="form-input" id="editName" placeholder="Your Name"/></div>
+      <div class="form-group"><label class="form-label">Phone Number</label><input type="tel" class="form-input" id="editPhone" placeholder="+91 XXXXXXXXXX"/></div>
+      <div class="form-group"><label class="form-label">Instagram URL</label><input type="url" class="form-input" id="editInsta" placeholder="https://instagram.com/you"/></div>
+      <div class="form-group"><label class="form-label">Facebook URL</label><input type="url" class="form-input" id="editFacebook" placeholder="https://facebook.com/you"/></div>
+      <div class="form-group"><label class="form-label">YouTube Channel</label><input type="url" class="form-input" id="editYouTube" placeholder="https://youtube.com/@you"/></div>
+      <div class="form-group"><label class="form-label">Telegram ID</label><input type="text" class="form-input" id="editTelegram" placeholder="@yourtelegram"/></div>
+      <div class="form-group"><label class="form-label">Free Fire UID</label><input type="text" class="form-input" id="editUID" placeholder="Your FF UID"/></div>
+      <div class="form-group"><label class="form-label">Server Region</label><select class="form-input" id="editServer"><option>India (IND)</option><option>Brazil (BR)</option><option>Indonesia (ID)</option><option>Thailand (TH)</option><option>Middle East (ME)</option><option>US (NA)</option></select></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-outline" onclick="closeModal('editProfileModal')">Cancel</button>
+      <button class="btn-full" onclick="saveProfile()">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- SUPPORT MODAL -->
+<div class="modal-overlay" id="supportModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">🎧 Help & Support</div>
+      <button class="modal-close" onclick="closeModal('supportModal')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="guide-card" style="margin-bottom:14px;text-align:left;">
+        <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Contact us via:</p>
+        <a href="https://t.me/YOURTELEGRAM" target="_blank" class="social-btn" style="display:flex;margin-bottom:8px;"><i class="fab fa-telegram" style="color:#00b4ff;"></i> Telegram Support</a>
+        <a href="https://instagram.com/YOURINSTA" target="_blank" class="social-btn" style="display:flex;margin-bottom:8px;"><i class="fab fa-instagram" style="color:#e4405f;"></i> Instagram DM</a>
+        <a href="https://whatsapp.com/channel/0029VbCLgDUIiRp2vK8W1h2L" target="_blank" class="social-btn" style="display:flex;"><i class="fab fa-whatsapp" style="color:#25d366;"></i> WhatsApp</a>
+      </div>
+      <div class="form-group"><label class="form-label">Issue Description</label><textarea class="form-input" rows="4" placeholder="Describe your issue..."></textarea></div>
+    </div>
+    <div class="modal-footer"><button class="btn-full" onclick="closeModal('supportModal')">Close</button></div>
+  </div>
+</div>
+
+<!-- FEEDBACK MODAL -->
+<div class="modal-overlay" id="feedbackModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">⭐ Feedback & Proofs</div>
+      <button class="modal-close" onclick="closeModal('feedbackModal')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group"><label class="form-label">Your Rating</label>
+        <div style="font-size:24px;display:flex;gap:8px;margin-bottom:8px;">
+          <span onclick="setRating(1)" class="star" style="cursor:pointer;">⭐</span>
+          <span onclick="setRating(2)" class="star" style="cursor:pointer;">⭐</span>
+          <span onclick="setRating(3)" class="star" style="cursor:pointer;">⭐</span>
+          <span onclick="setRating(4)" class="star" style="cursor:pointer;">⭐</span>
+          <span onclick="setRating(5)" class="star" style="cursor:pointer;">⭐</span>
+        </div>
+      </div>
+      <div class="form-group"><label class="form-label">Your Review</label><textarea class="form-input" rows="3" placeholder="Share your experience..." id="feedbackText"></textarea></div>
+      <div class="form-group"><label class="form-label">Upload Proof Screenshot</label><input type="file" class="form-input" accept="image/*"/></div>
+    </div>
+    <div class="modal-footer"><button class="btn-outline" onclick="closeModal('feedbackModal')">Cancel</button><button class="btn-full" onclick="submitFeedback()">Submit</button></div>
+  </div>
+</div>
+
+<!-- REDEEM MODAL -->
+<div class="modal-overlay" id="redeemModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">🎟️ Redeem Code</div>
+      <button class="modal-close" onclick="closeModal('redeemModal')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group"><label class="form-label">Promo Code</label><input type="text" class="form-input" id="redeemCodeModal" placeholder="ENTER CODE" style="text-transform:uppercase;font-family:var(--font-mono);letter-spacing:3px;text-align:center;"/></div>
+    </div>
+    <div class="modal-footer"><button class="btn-full" onclick="redeemCodeModal()">APPLY CODE</button></div>
+  </div>
+</div>
+
+<!-- SURPRISE MODAL -->
+<div class="modal-overlay" id="surpriseModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">🎉 VIP SURPRISE!</div>
+      <button class="modal-close" onclick="closeModal('surpriseModal')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="surprise-content">
+        <div class="surprise-emoji">🎁</div>
+        <h3 style="font-family:var(--font-head);font-size:18px;color:var(--gold);margin-bottom:10px;">YOU UNLOCKED A SECRET!</h3>
+        <p style="color:var(--muted);font-size:13px;margin-bottom:16px;">Use code <strong style="color:var(--neon);font-family:var(--font-mono);">RAJVIP10</strong> for 10% OFF on any purchase!</p>
+        <button class="btn-primary" onclick="document.getElementById('redeemCodeInput').value='RAJVIP10';closeModal('surpriseModal');">Apply Code</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FIREBASE SDK -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc, updateDoc, collection, addDoc, query, where, getDocs, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
+// ============================================================
+// 🔧 FIREBASE CONFIG — REPLACE WITH YOUR OWN CONFIG
+// ============================================================
+const firebaseConfig = {
+  apiKey: "AIzaSyBA_CVYQ0HedpQKWnquVNfeuLerPOCooys",
+  authDomain: "raj-x-mod-shop.firebaseapp.com",
+  projectId: "raj-x-mod-shop",
+  storageBucket: "raj-x-mod-shop.firebasestorage.app",
+  messagingSenderId: "491842170260",
+  appId: "1:491842170260:web:0097bfa42569ccc8e8f381"
+};
+// ============================================================
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
+const googleProvider = new GoogleAuthProvider();
+
+// Make global
+window._auth = auth;
+window._db = db;
+window._storage = storage;
+window._googleProvider = googleProvider;
+window._firebase = { signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, signOut, sendPasswordResetEmail, doc, setDoc, getDoc, updateDoc, collection, addDoc, query, where, getDocs, orderBy, onSnapshot, serverTimestamp, ref, uploadBytes, getDownloadURL };
+
+let currentUser = null;
+let userProfile = {};
+let currentAuthTab = 'login';
+let userOrders = [];
+let walletBalance = 0;
+let spinsLeft = 2;
+let selectedProduct = null;
+let selectedDuration = null;
+
+// AUTH STATE
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    currentUser = user;
+    window._currentUser = user;
+    await loadUserProfile(user.uid);
+    updateHeaderForLoggedIn(user);
+    loadUserOrders(user.uid);
+  } else {
+    currentUser = null;
+    window._currentUser = null;
+    updateHeaderForLoggedOut();
+  }
+});
+
+async function loadUserProfile(uid) {
+  const docRef = doc(db, 'users', uid);
+  const snap = await getDoc(docRef);
+  if (snap.exists()) {
+    userProfile = snap.data();
+    walletBalance = userProfile.walletBalance || 0;
+    window._walletBalance = walletBalance;
+    updateWalletDisplay();
+    updateDashboard();
+  } else {
+    // Create profile
+    const profile = {
+      uid, email: currentUser.email,
+      displayName: currentUser.displayName || currentUser.email.split('@')[0],
+      walletBalance: 0, referralBonus: 0, spinWinnings: 0,
+      spinsLeft: 2, totalOrders: 0, approvedOrders: 0,
+      referralCode: 'RAJ' + uid.slice(0,6).toUpperCase(),
+      referredBy: null, referralCount: 0,
+      createdAt: serverTimestamp()
+    };
+    await setDoc(docRef, profile);
+    userProfile = profile;
+    window._walletBalance = 0;
+  }
+}
+
+function updateWalletDisplay() {
+  const bal = '₹' + (userProfile.walletBalance || 0).toFixed(2);
+  document.getElementById('walletBalance').textContent = bal;
+  document.getElementById('walletMain').textContent = bal;
+  document.getElementById('dashWallet').textContent = bal;
+  document.getElementById('referralBonus').textContent = '₹' + (userProfile.referralBonus || 0).toFixed(2);
+  document.getElementById('spinWinnings').textContent = '₹' + (userProfile.spinWinnings || 0).toFixed(2);
+}
+
+function updateDashboard() {
+  document.getElementById('dashOrders').textContent = userProfile.totalOrders || 0;
+  document.getElementById('dashApproved').textContent = userProfile.approvedOrders || 0;
+  document.getElementById('dashReferrals').textContent = userProfile.referralCount || 0;
+  const refLink = window.location.origin + window.location.pathname + '?ref=' + (userProfile.referralCode || '');
+  document.getElementById('referralLink').textContent = refLink;
+  document.getElementById('referralCode2').textContent = refLink;
+}
+
+function updateHeaderForLoggedIn(user) {
+  document.getElementById('authBtns').style.display = 'none';
+  document.getElementById('profileBtnWrap').style.display = 'block';
+  document.getElementById('walletPill').style.display = 'flex';
+  const name = userProfile.displayName || user.displayName || user.email.split('@')[0];
+  const initial = name.charAt(0).toUpperCase();
+  document.getElementById('profileInitial').textContent = initial;
+  document.getElementById('profileAvatarLarge').textContent = initial;
+  document.getElementById('profileMenuName').textContent = name;
+  document.getElementById('profileMenuEmail').textContent = user.email;
+}
+
+function updateHeaderForLoggedOut() {
+  document.getElementById('authBtns').style.display = 'flex';
+  document.getElementById('profileBtnWrap').style.display = 'none';
+  document.getElementById('walletPill').style.display = 'none';
+}
+
+function loadUserOrders(uid) {
+  const q = query(collection(db, 'orders'), where('userId', '==', uid), orderBy('timestamp', 'desc'));
+  onSnapshot(q, (snap) => {
+    userOrders = snap.docs.map(d => ({id: d.id, ...d.data()}));
+    renderOrders(userOrders);
+  });
+}
+
+window.renderOrders = function(orders) {
+  const list = document.getElementById('orderList');
+  if (!orders.length) {
+    list.innerHTML = '<div style="text-align:center;padding:40px;color:var(--muted);"><i class="fas fa-box-open" style="font-size:40px;margin-bottom:12px;display:block;"></i>No orders yet. <a href="#" onclick="showSection(\'shop\')" style="color:var(--purple-light);">Browse Shop →</a></div>';
+    return;
+  }
+  list.innerHTML = orders.map(o => `
+    <div class="order-card">
+      <div class="order-info">
+        <h4>${o.productName || 'Product'} – ${o.duration || ''}</h4>
+        <p>₹${o.price || 0} | ${o.timestamp ? new Date(o.timestamp.toDate()).toLocaleString() : 'Just now'}</p>
+        <p style="font-size:11px;margin-top:4px;">📱 ${o.customerPhone || ''} | 📸 ${o.customerInsta || ''}</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end;">
+        <div class="order-status status-${o.status || 'pending'}">${o.status === 'approved' ? '🟢 Approved' : o.status === 'rejected' ? '🔴 Rejected' : '🟡 Pending'}</div>
+        ${o.status === 'approved' && o.telegramLink
+          ? `<button class="tg-btn" onclick="window.open('${o.telegramLink}','_blank')"><i class="fab fa-telegram"></i> Download</button>`
+          : `<button class="tg-btn locked" disabled><i class="fas fa-lock"></i> ${o.status === 'rejected' ? 'Rejected' : 'Locked'}</button>`}
+      </div>
+    </div>
+  `).join('');
+};
+
+window.filterOrders = function(btn, status) {
+  document.querySelectorAll('#sec-orders .cat-tab').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  const filtered = status === 'all' ? userOrders : userOrders.filter(o => o.status === status);
+  renderOrders(filtered);
+};
+
+// AUTH FUNCTIONS
+window.submitAuth = async function() {
+  if (currentAuthTab === 'login') {
+    const email = document.getElementById('loginEmail').value.trim();
+    const pass = document.getElementById('loginPassword').value;
+    if (!email || !pass) { showNotif('Error','Please fill all fields','error'); return; }
+    try {
+      await signInWithEmailAndPassword(auth, email, pass);
+      closeModal('loginModal');
+      showNotif('Welcome Back!', 'Login successful 🎮', 'success');
+    } catch(e) { showNotif('Login Failed', e.message, 'error'); }
+  } else {
+    const username = document.getElementById('regUsername').value.trim();
+    const email = document.getElementById('regEmail').value.trim();
+    const pass = document.getElementById('regPassword').value;
+    const refCode = document.getElementById('regReferral').value.trim();
+    if (!username || !email || !pass) { showNotif('Error','Please fill all fields','error'); return; }
+    if (pass.length < 6) { showNotif('Error','Password must be at least 6 characters','error'); return; }
+    try {
+      const cred = await createUserWithEmailAndPassword(auth, email, pass);
+      const uid = cred.user.uid;
+      await setDoc(doc(db, 'users', uid), {
+        uid, email, displayName: username, walletBalance: 0, referralBonus: 0, spinWinnings: 0,
+        spinsLeft: 2, totalOrders: 0, approvedOrders: 0,
+        referralCode: 'RAJ' + uid.slice(0,6).toUpperCase(),
+        referredBy: refCode || null, referralCount: 0,
+        createdAt: serverTimestamp()
+      });
+      closeModal('loginModal');
+      showNotif('Account Created!', 'Welcome to RAJ X PANEL STORE! 🎮', 'success');
+    } catch(e) { showNotif('Registration Failed', e.message, 'error'); }
+  }
+};
+
+window.googleLogin = async function() {
+  try {
+    await signInWithPopup(auth, googleProvider);
+    closeModal('loginModal');
+    showNotif('Welcome!', 'Signed in with Google 🎮', 'success');
+  } catch(e) { showNotif('Error', e.message, 'error'); }
+};
+
+window.logout = async function() {
+  await signOut(auth);
+  showSection('home');
+  closeProfileMenu();
+  showNotif('Logged Out', 'See you again! 👋', 'info');
+};
+
+window.forgotPassword = async function() {
+  const email = document.getElementById('loginEmail').value.trim();
+  if (!email) { showNotif('Error', 'Enter your email first', 'error'); return; }
+  try {
+    await sendPasswordResetEmail(auth, email);
+    showNotif('Email Sent', 'Check your inbox for reset link', 'success');
+  } catch(e) { showNotif('Error', e.message, 'error'); }
+};
+
+window.switchAuthTab = function(tab, el) {
+  currentAuthTab = tab;
+  document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('loginForm').style.display = tab === 'login' ? 'block' : 'none';
+  document.getElementById('registerForm').style.display = tab === 'register' ? 'block' : 'none';
+  document.getElementById('authSubmitBtn').textContent = tab === 'login' ? 'LOGIN' : 'CREATE ACCOUNT';
+};
+
+// PURCHASE
+window.openBuyModal = function(product, duration, price) {
+  if (!currentUser) { openModal('loginModal'); return; }
+  selectedProduct = product;
+  selectedDuration = { duration, price };
+  
+  document.getElementById('buyModalTitle').textContent = `Buy: ${product.name}`;
+  document.getElementById('buyPurchaseInfo').innerHTML = `
+    <div class="purchase-info-row"><span class="key">Product</span><span class="val">${product.name}</span></div>
+    <div class="purchase-info-row"><span class="key">Duration</span><span class="val">${duration}</span></div>
+    <div class="purchase-info-row"><span class="key">Price</span><span class="val price">₹${price}</span></div>
+    <div class="purchase-info-row"><span class="key">Wallet Balance</span><span class="val balance ${userProfile.walletBalance >= price ? '' : 'insufficient'}">₹${(userProfile.walletBalance || 0).toFixed(2)}</span></div>
+  `;
+  
+  const insufficient = (userProfile.walletBalance || 0) < price;
+  document.getElementById('buyInsufficientMsg').style.display = insufficient ? 'block' : 'none';
+  document.getElementById('buyModalFooter').style.display = insufficient ? 'none' : 'flex';
+  openModal('buyModal');
+};
+
+window.confirmPurchase = async function() {
+  if (!currentUser || !selectedProduct || !selectedDuration) return;
+  const name = document.getElementById('buyName').value.trim();
+  const phone = document.getElementById('buyPhone').value.trim();
+  const insta = document.getElementById('buyInsta').value.trim();
+  const uid = document.getElementById('buyUID').value.trim();
+  if (!name || !phone || !insta) { showNotif('Error', 'Please fill all required fields', 'error'); return; }
+  
+  const price = selectedDuration.price;
+  if ((userProfile.walletBalance || 0) < price) { showNotif('Error', 'Insufficient balance', 'error'); return; }
+  
+  try {
+    // Deduct from wallet
+    const newBalance = (userProfile.walletBalance || 0) - price;
+    await updateDoc(doc(db, 'users', currentUser.uid), { walletBalance: newBalance, totalOrders: (userProfile.totalOrders || 0) + 1 });
+    userProfile.walletBalance = newBalance;
+    
+    // Create order
+    await addDoc(collection(db, 'orders'), {
+      userId: currentUser.uid, userEmail: currentUser.email,
+      productName: selectedProduct.name, productCategory: selectedProduct.category,
+      duration: selectedDuration.duration, price,
+      status: 'pending', telegramLink: null,
+      customerName: name, customerPhone: phone, customerInsta: insta, customerUID: uid,
+      timestamp: serverTimestamp()
+    });
+    
+    // Create transaction
+    await addDoc(collection(db, 'transactions'), {
+      userId: currentUser.uid, type: 'purchase',
+      amount: -price, description: `${selectedProduct.name} - ${selectedDuration.duration}`,
+      timestamp: serverTimestamp()
+    });
+    
+    updateWalletDisplay();
+    closeModal('buyModal');
+    openModal('pendingModal');
+    showNotif('Order Placed!', 'Wait 10-12 mins for admin verification', 'success');
+  } catch(e) { showNotif('Error', e.message, 'error'); }
+};
+
+// WALLET / PAYMENT
+window.submitPaymentProof = async function() {
+  if (!currentUser) { openModal('loginModal'); return; }
+  const amount = document.getElementById('proofAmount').value;
+  const utr = document.getElementById('proofUTR').value.trim();
+  if (!amount || !utr) { showNotif('Error', 'Fill all payment details', 'error'); return; }
+  
+  try {
+    await addDoc(collection(db, 'payment_proofs'), {
+      userId: currentUser.uid, userEmail: currentUser.email,
+      amount: parseFloat(amount), utr, status: 'pending',
+      timestamp: serverTimestamp()
+    });
+    closeModal('paymentProofModal');
+    showNotif('Proof Submitted!', 'Admin will verify and credit within 15 minutes', 'success');
+  } catch(e) { showNotif('Error', e.message, 'error'); }
+};
+
+// REDEEM CODE
+window.redeemCode = window.redeemCodeModal = async function() {
+  if (!currentUser) { openModal('loginModal'); return; }
+  const code = (document.getElementById('redeemCodeInput').value || document.getElementById('redeemCodeModal')?.value || '').toUpperCase().trim();
+  if (!code) { showNotif('Error', 'Enter a code', 'error'); return; }
+  
+  try {
+    const codeDoc = await getDoc(doc(db, 'redeem_codes', code));
+    if (!codeDoc.exists()) { showNotif('Invalid Code', 'This code does not exist', 'error'); return; }
+    const codeData = codeDoc.data();
+    if (!codeData.active) { showNotif('Expired', 'This code has expired', 'error'); return; }
+    if ((codeData.usedBy || []).includes(currentUser.uid)) { showNotif('Already Used', 'You already used this code', 'error'); return; }
+    if ((codeData.usedCount || 0) >= (codeData.maxUses || 1)) { showNotif('Exhausted', 'Code limit reached', 'error'); return; }
+    
+    const reward = codeData.reward || 0;
+    const newBalance = (userProfile.walletBalance || 0) + reward;
+    await updateDoc(doc(db, 'users', currentUser.uid), { walletBalance: newBalance });
+    await updateDoc(doc(db, 'redeem_codes', code), { usedCount: (codeData.usedCount || 0) + 1, usedBy: [...(codeData.usedBy || []), currentUser.uid] });
+    userProfile.walletBalance = newBalance;
+    updateWalletDisplay();
+    closeModal('redeemModal');
+    showNotif('Code Applied! 🎉', `₹${reward} added to wallet!`, 'success');
+  } catch(e) { showNotif('Error', e.message, 'error'); }
+};
+
+// SAVE PROFILE
+window.saveProfile = async function() {
+  if (!currentUser) return;
+  const updates = {
+    displayName: document.getElementById('editName').value.trim() || userProfile.displayName,
+    phone: document.getElementById('editPhone').value.trim(),
+    instagram: document.getElementById('editInsta').value.trim(),
+    facebook: document.getElementById('editFacebook').value.trim(),
+    youtube: document.getElementById('editYouTube').value.trim(),
+    telegram: document.getElementById('editTelegram').value.trim(),
+    ffUID: document.getElementById('editUID').value.trim(),
+    server: document.getElementById('editServer').value,
+  };
+  try {
+    await updateDoc(doc(db, 'users', currentUser.uid), updates);
+    Object.assign(userProfile, updates);
+    closeModal('editProfileModal');
+    showNotif('Profile Updated!', 'Changes saved successfully', 'success');
+    document.getElementById('profileMenuName').textContent = updates.displayName;
+    const i = updates.displayName.charAt(0).toUpperCase();
+    document.getElementById('profileInitial').textContent = i;
+    document.getElementById('profileAvatarLarge').textContent = i;
+  } catch(e) { showNotif('Error', e.message, 'error'); }
+};
+
+// FEEDBACK
+window.submitFeedback = async function() {
+  const text = document.getElementById('feedbackText').value.trim();
+  if (!text) { showNotif('Error', 'Write a review first', 'error'); return; }
+  if (!currentUser) { openModal('loginModal'); return; }
+  await addDoc(collection(db, 'feedback'), {
+    userId: currentUser.uid, userEmail: currentUser.email,
+    text, rating: window._selectedRating || 5, timestamp: serverTimestamp()
+  });
+  closeModal('feedbackModal');
+  showNotif('Thank You! ⭐', 'Feedback submitted', 'success');
+};
+
+// CHAT
+window.sendChat = async function() {
+  const input = document.getElementById('chatInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+  const msgs = document.getElementById('chatMessages');
+  msgs.innerHTML += `<div class="chat-msg user">${msg}</div>`;
+  input.value = '';
+  msgs.scrollTop = msgs.scrollHeight;
+  if (currentUser) {
+    await addDoc(collection(db, 'chats'), {
+      userId: currentUser.uid, userEmail: currentUser.email,
+      message: msg, from: 'user', timestamp: serverTimestamp()
+    });
+  }
+  setTimeout(() => {
+    msgs.innerHTML += `<div class="chat-msg admin">✅ Message received! Admin will reply shortly.</div>`;
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 1000);
+};
+
+// SPIN WHEEL (client-side only, use Cloud Functions for real)
+window.spinWheel = async function() {
+  if (spinsLeft <= 0) { showNotif('No Spins', 'Come back tomorrow for free spins', 'error'); return; }
+  const btn = document.getElementById('spinBtn');
+  btn.disabled = true;
+  spinsLeft--;
+  btn.textContent = spinsLeft > 0 ? `SPIN NOW (${spinsLeft} FREE)` : 'NO SPINS LEFT';
+  
+  const prizes = ['1% OFF','2% OFF','3% OFF','5% OFF','7% OFF','9% OFF','10% OFF','FREE TOOL','₹5 BONUS','₹10 BONUS'];
+  const idx = Math.floor(Math.random() * prizes.length);
+  const degrees = 360 * 5 + (idx * (360 / prizes.length));
+  
+  const canvas = document.getElementById('wheelCanvas');
+  canvas.style.transform = `rotate(${degrees}deg)`;
+  canvas.style.transition = 'transform 3s cubic-bezier(0.2,0.8,0.3,1)';
+  
+  setTimeout(async () => {
+    const prize = prizes[idx];
+    showNotif('🎉 You Won!', `Prize: ${prize}`, 'success');
+    if (prize.includes('BONUS') && currentUser) {
+      const bonus = parseInt(prize.replace('₹',''));
+      const newBal = (userProfile.walletBalance || 0) + bonus;
+      await updateDoc(doc(db, 'users', currentUser.uid), { walletBalance: newBal, spinWinnings: (userProfile.spinWinnings || 0) + bonus });
+      userProfile.walletBalance = newBal;
+      updateWalletDisplay();
+    }
+    btn.disabled = spinsLeft <= 0;
+  }, 3200);
+};
+
+// COPY REFERRAL
+window.copyReferral = function() {
+  const link = document.getElementById('referralLink').textContent;
+  navigator.clipboard.writeText(link);
+  showNotif('Copied!', 'Referral link copied to clipboard', 'success');
+};
+
+window.copyUPI = function() {
+  navigator.clipboard.writeText('fvraj@fam');
+  showNotif('Copied!', 'UPI ID copied', 'success');
+};
+
+window._walletBalance = 0;
+</script>
+
+<script>
+// ============================================================
+// PRODUCTS DATA
+// ============================================================
+const PRODUCTS = [
+  // ANDROID ROOT
+  {id:'br-mod',name:'BR MOD FF',category:'root',badge:'root',icon:'🤖',desc:'Premium root-based sensitivity & performance configuration tool for Android. Root required.',tags:['Root Required','Android','Free Fire'],prices:[{d:'1 Day Mobile',p:119},{d:'7 Days Mobile',p:359},{d:'15 Days Mobile',p:599},{d:'30 Days Mobile',p:839}]},
+  {id:'haxxcker',name:'HAXX-CKER PRO FF',category:'root',badge:'root',icon:'⚡',desc:'Professional root-level HUD and performance optimization suite for advanced FF players.',tags:['Root Required','Android','VIP'],prices:[{d:'10 Days',p:539}]},
+  // ANDROID NON ROOT
+  {id:'prime-hook',name:'PRIME HOOK FF',category:'nonroot',badge:'nonroot',icon:'📱',desc:'Advanced non-root sensitivity configuration and HUD pack. No root needed!',tags:['No Root','Android','Easy Setup'],prices:[{d:'5 Days Mod',p:216},{d:'10 Days Mod',p:391}]},
+  {id:'dripclient',name:'DRIPCLIENT FF',category:'nonroot',badge:'nonroot',icon:'💧',desc:'Premium non-root layout & sensitivity mod panel. Clean install, instant setup.',tags:['No Root','Android','Premium'],prices:[{d:'1 Day NONROOT',p:130},{d:'7 Days NONROOT',p:390},{d:'15 Days NONROOT',p:640}]},
+  {id:'hg-cheats',name:'HG CHEATS FF',category:'nonroot',badge:'nonroot',icon:'🎯',desc:'HUD optimization and game feel configuration panel for competitive FF players.',tags:['No Root','Android','Competitive'],prices:[{d:'1 Day',p:173},{d:'7 Days',p:340},{d:'10 Days',p:353},{d:'30 Days',p:758}]},
+  {id:'pato-team',name:'PATO TEAM FF',category:'nonroot',badge:'nonroot',icon:'🦆',desc:'Team-optimized sensitivity and HUD customization panel with brutal performance mode.',tags:['No Root','Android','Team Play'],prices:[{d:'3 Days',p:369},{d:'7 Days',p:540},{d:'7 Days Brutal',p:589}]},
+  // iOS
+  {id:'ios-fluorite',name:'IOS FLUORITE FF',category:'ios',badge:'ios',icon:'🍎',desc:'Premium iOS-compatible Free Fire enhancement layout. Works on all iPhones. Esign/Signer included.',tags:['iOS','iPhone','VIP'],prices:[{d:'1 Day Fluorite FF',p:490},{d:'7 Days Fluorite FF',p:1390},{d:'30 Days Fluorite FF',p:2290},{d:'Esign Certificate For iOS',p:739},{d:'Signer Certificate For iOS',p:1039}]},
+  // PC
+  {id:'pc-aimkill',name:'PC AIMKILL',category:'pc',badge:'pc',icon:'💻',desc:'Advanced PC aim training & sensitivity calibration tool for Free Fire PC players.',tags:['PC','Windows','Aim Training'],prices:[{d:'1 Day',p:190},{d:'7 Days',p:490},{d:'15 Days',p:790},{d:'30 Days',p:1090}]},
+  {id:'pc-aim-silent',name:'PC AIM SILENT',category:'pc',badge:'pc',icon:'🖥️',desc:'Silent background PC performance optimizer and sensitivity manager. Ultra low CPU usage.',tags:['PC','Windows','Silent Mode'],prices:[{d:'1 Day',p:119},{d:'10 Days',p:519},{d:'30 Days',p:839}]},
+  {id:'pc-bypass-silent',name:'PC BYPASS + SILENT',category:'pc',badge:'pc',icon:'🛡️',desc:'Combined bypass and silent PC tool for maximum performance optimization in Free Fire PC.',tags:['PC','Windows','Bypass+Silent'],prices:[{d:'1 Day',p:159},{d:'10 Days',p:559},{d:'30 Days',p:999}]},
+];
+
+window.PRODUCTS = PRODUCTS;
+let currentFilter = 'all';
+
+function renderProducts(container, products) {
+  if (!container) return;
+  container.innerHTML = products.map(p => `
+    <div class="product-card" data-cat="${p.category}">
+      <div class="product-thumb">
+        <div class="thumb-bg">${p.icon}</div>
+        <div class="platform-badge badge-${p.badge}">${p.badge.toUpperCase()}</div>
+      </div>
+      <div class="product-body">
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-tags">${p.tags.map(t=>`<span class="product-tag">${t}</span>`).join('')}</div>
+        <div class="price-options">
+          ${p.prices.slice(0,3).map((pr,i)=>`
+            <div class="price-row ${i===0?'selected':''}" onclick="selectPrice(this,'${p.id}','${pr.d}',${pr.p})">
+              <span class="price-label">${pr.d}</span>
+              <span class="price-value">₹${pr.p}</span>
+            </div>
+          `).join('')}
+          ${p.prices.length > 3 ? `<button class="demo-btn" style="width:100%;text-align:center;" onclick="showAllPrices('${p.id}')">+ ${p.prices.length - 3} more options</button>` : ''}
+        </div>
+        <div class="product-actions">
+          <button class="buy-btn" onclick="triggerBuy('${p.id}')"><i class="fas fa-bolt"></i> BUY NOW</button>
+          <button class="demo-btn" onclick="openYT('DEMO_VIDEO_${p.id}')"><i class="fas fa-play"></i></button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function selectPrice(el, productId, duration, price) {
+  const card = el.closest('.product-card');
+  card.querySelectorAll('.price-row').forEach(r => r.classList.remove('selected'));
+  el.classList.add('selected');
+  // Store selection
+  el._productId = productId;
+  el._duration = duration;
+  el._price = price;
+  card._selectedDuration = duration;
+  card._selectedPrice = price;
+}
+
+window.triggerBuy = function(productId) {
+  const product = PRODUCTS.find(p => p.id === productId);
+  if (!product) return;
+  const card = document.querySelector(`[data-cat="${product.category}"] .price-row.selected`) || document.querySelector(`.price-row.selected`);
+  // Find selected price in this product
+  const allCards = document.querySelectorAll('.product-card');
+  let selectedDur = product.prices[0].d;
+  let selectedPrice = product.prices[0].p;
+  allCards.forEach(c => {
+    const sel = c.querySelector('.price-row.selected');
+    if (sel) {
+      const dur = sel.querySelector('.price-label')?.textContent;
+      const pr = parseFloat(sel.querySelector('.price-value')?.textContent.replace('₹',''));
+      if (dur && product.prices.find(x => x.d === dur)) { selectedDur = dur; selectedPrice = pr; }
+    }
+  });
+  window.openBuyModal(product, selectedDur, selectedPrice);
+};
+
+window.showAllPrices = function(productId) {
+  // Simple approach - open a mini modal with all prices
+  const product = PRODUCTS.find(p => p.id === productId);
+  if (!product) return;
+  // Temporarily expand
+};
+
+window.filterCat = function(btn, cat) {
+  currentFilter = cat;
+  if (btn) {
+    document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  const grid = document.getElementById('allProductGrid');
+  const filtered = cat === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === cat);
+  renderProducts(grid, filtered);
+};
+
+window.filterProducts = function() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const filtered = PRODUCTS.filter(p => p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q) || p.category.toLowerCase().includes(q));
+  renderProducts(document.getElementById('allProductGrid'), filtered);
+};
+
+window.filterHistory = function(btn, type) {
+  document.querySelectorAll('#sec-history .cat-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+};
+
+// SECTION NAVIGATION
+window.showSection = function(sec) {
+  document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById('sec-' + sec);
+  if (el) el.classList.add('active');
+  window.scrollTo(0,0);
+  closeProfileMenu();
+  // Initialize sections
+  if (sec === 'shop') { renderProducts(document.getElementById('allProductGrid'), PRODUCTS); }
+  if (sec === 'spin') { initSpinWheel(); }
+};
+
+window.requireAuth = function(sec) {
+  if (!window._currentUser) { openModal('loginModal'); return; }
+  showSection(sec);
+};
+
+window.openTab = function(sec) { showSection(sec); };
+
+// MODALS
+window.openModal = function(id) { document.getElementById(id).classList.add('show'); };
+window.closeModal = function(id) { document.getElementById(id).classList.remove('show'); };
+document.addEventListener('click', e => { if (e.target.classList.contains('modal-overlay')) e.target.classList.remove('show'); });
+
+// PROFILE MENU
+window.toggleProfileMenu = function() { document.getElementById('profileMenu').classList.toggle('show'); };
+window.closeProfileMenu = function() { document.getElementById('profileMenu').classList.remove('show'); };
+document.addEventListener('click', e => { if (!e.target.closest('#profileBtnWrap')) closeProfileMenu(); });
+
+// NOTIFICATION
+window.showNotif = function(title, msg, type='info') {
+  const n = document.getElementById('notification');
+  document.getElementById('notifTitle').textContent = title;
+  document.getElementById('notifMsg').textContent = msg;
+  n.className = `notification ${type}`;
+  const iconMap = {success:'fa-check-circle',error:'fa-exclamation-circle',info:'fa-info-circle'};
+  n.querySelector('.notif-icon i').className = `fas ${iconMap[type]||'fa-info-circle'}`;
+  n.classList.add('show');
+  setTimeout(() => n.classList.remove('show'), 4000);
+};
+
+// CHAT
+window.toggleChat = function() { document.getElementById('chatBox').classList.toggle('show'); };
+
+// SPIN WHEEL CANVAS
+function initSpinWheel() {
+  const canvas = document.getElementById('wheelCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const cx = 120, cy = 120, r = 115;
+  const segments = ['1% OFF','7% OFF','9% OFF','1% OFF','2% OFF','10% OFF','3% OFF','5% OFF','FREE TOOL','₹5'];
+  const colors = ['#7d2ae8','#f5c518','#7d2ae8','#f5c518','#7d2ae8','#f5c518','#7d2ae8','#f5c518','#7d2ae8','#f5c518'];
+  const seg = (2 * Math.PI) / segments.length;
+  
+  ctx.clearRect(0,0,240,240);
+  segments.forEach((s,i) => {
+    ctx.beginPath();
+    ctx.moveTo(cx,cy);
+    ctx.arc(cx,cy,r,i*seg,(i+1)*seg);
+    ctx.fillStyle = colors[i];
+    ctx.fill();
+    ctx.strokeStyle = '#0a0014';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    
+    ctx.save();
+    ctx.translate(cx,cy);
+    ctx.rotate(i*seg + seg/2);
+    ctx.textAlign = 'right';
+    ctx.fillStyle = '#fff';
+    ctx.font = 'bold 11px Orbitron, sans-serif';
+    ctx.fillText(s, r - 10, 4);
+    ctx.restore();
+  });
+  
+  // Center circle
+  ctx.beginPath();
+  ctx.arc(cx,cy,20,0,2*Math.PI);
+  ctx.fillStyle = '#0a0014';
+  ctx.fill();
+  ctx.strokeStyle = '#7d2ae8';
+  ctx.lineWidth = 3;
+  ctx.stroke();
+}
+
+// PARTICLES
+function createParticles() {
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.width = p.style.height = (Math.random() * 3 + 1) + 'px';
+    p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+    p.style.animationDelay = (Math.random() * 10) + 's';
+    p.style.opacity = Math.random() * 0.5;
+    container.appendChild(p);
+  }
+}
+createParticles();
+
+// SPIN TIMER
+function updateSpinTimer() {
+  const now = new Date();
+  const tomorrow = new Date(now);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  tomorrow.setHours(0,0,0,0);
+  const diff = tomorrow - now;
+  const h = Math.floor(diff / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  const el = document.getElementById('spinTimer');
+  if (el) el.textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
+setInterval(updateSpinTimer, 1000);
+
+// AMOUNT CHIPS
+window.selectAmount = function(el, amount) {
+  document.querySelectorAll('.amount-chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('customAmount').value = amount;
+};
+
+// DARK MODE
+window.toggleDarkMode = function() { document.body.classList.toggle('light-mode'); };
+
+// LANG
+const translations = {
+  en: { announcement: 'Subscribe YouTube for 10% OFF on All Tools! Limited Time Offer!' },
+  hi: { announcement: 'YouTube सब्सक्राइब करें और सभी टूल्स पर 10% छूट पाएं!' },
+  bn: { announcement: 'YouTube সাবস্ক্রাইব করুন এবং সমস্ত টুলসে 10% ছাড় পান!' }
+};
+window.setLang = function(lang) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  document.querySelector('[data-translate="announcement"]').textContent = translations[lang]?.announcement || translations.en.announcement;
+};
+
+// YT
+window.openYT = function(videoId) { window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank'); };
+
+// RATING
+window._selectedRating = 5;
+window.setRating = function(r) { window._selectedRating = r; showNotif('Rating', `You rated ${r} stars`, 'info'); };
+
+// FEEDBACK
+window.previewPhoto = function(input) {
+  const file = input.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const el = document.getElementById('editAvatarPreview');
+      el.style.background = `url(${e.target.result}) center/cover`;
+      el.textContent = '';
+    };
+    reader.readAsDataURL(file);
+  }
+};
+
+// PWA INSTALL
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredPrompt = e; });
+window.promptInstall = function() {
+  if (deferredPrompt) { deferredPrompt.prompt(); deferredPrompt.userChoice.then(() => { deferredPrompt = null; }); }
+  else { showNotif('Info', 'Use browser menu → "Add to Home Screen" to install', 'info'); }
+};
+
+// SURPRISE - Triple click logo
+let logoClicks = 0;
+document.querySelector('.logo').addEventListener('click', () => {
+  logoClicks++;
+  if (logoClicks >= 5) { logoClicks = 0; openModal('surpriseModal'); }
+  setTimeout(() => { if (logoClicks < 5) logoClicks = 0; }, 2000);
+});
+
+// INIT
+document.addEventListener('DOMContentLoaded', () => {
+  renderProducts(document.getElementById('featuredGrid'), PRODUCTS.slice(0,4));
+  renderProducts(document.getElementById('allProductGrid'), PRODUCTS);
+  initSpinWheel();
+  
+  // Check referral code in URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const ref = urlParams.get('ref');
+  if (ref && document.getElementById('regReferral')) document.getElementById('regReferral').value = ref;
+});
+</script>
+
+<!-- PWA SERVICE WORKER -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
+</script>
+</body>
+</html>

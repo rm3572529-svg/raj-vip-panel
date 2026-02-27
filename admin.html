@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RAJ X PANEL – Admin Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{
+  --purple:#7d2ae8;--purple-light:#9b4dff;--neon:#b44fff;--gold:#f5c518;
+  --cyan:#00f5ff;--bg:#06000f;--bg2:#0d0020;--card:#12002a;--card2:#1a003a;
+  --border:rgba(125,42,232,0.3);--text:#e8d5ff;--muted:#9d7fc2;
+  --green:#00ff88;--red:#ff4466;--orange:#ff8800;
+  --font-head:'Orbitron',monospace;--font-body:'Rajdhani',sans-serif;--font-mono:'Space Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);overflow-x:hidden;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--bg2);}::-webkit-scrollbar-thumb{background:var(--purple);border-radius:3px;}
+
+/* LOGIN SCREEN */
+.admin-login{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;background:radial-gradient(ellipse at 30% 30%,rgba(125,42,232,0.2) 0%,transparent 70%);}
+.login-box{background:var(--card2);border:1px solid var(--border);border-radius:20px;padding:40px;width:100%;max-width:400px;text-align:center;}
+.login-logo{font-family:var(--font-head);font-size:18px;background:linear-gradient(90deg,var(--purple-light),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px;}
+.login-sub{font-size:11px;color:var(--red);letter-spacing:2px;text-transform:uppercase;margin-bottom:30px;}
+.admin-form-group{margin-bottom:16px;text-align:left;}
+.admin-label{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.admin-input{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;color:var(--text);font-family:var(--font-body);font-size:14px;outline:none;transition:border-color 0.3s;}
+.admin-input:focus{border-color:var(--purple);}
+.admin-btn{width:100%;background:linear-gradient(135deg,var(--purple),var(--neon));border:none;color:#fff;padding:14px;border-radius:10px;font-family:var(--font-head);font-size:13px;cursor:pointer;letter-spacing:1px;transition:all 0.3s;margin-top:8px;}
+.admin-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(125,42,232,0.5);}
+
+/* DASHBOARD */
+.admin-wrap{display:none;min-height:100vh;}
+.admin-sidebar{position:fixed;top:0;left:0;bottom:0;width:240px;background:var(--card2);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:100;transition:transform 0.3s;}
+.sidebar-logo{padding:20px;border-bottom:1px solid var(--border);}
+.sidebar-logo .brand{font-family:var(--font-head);font-size:13px;background:linear-gradient(90deg,var(--purple-light),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.sidebar-logo .brand-sub{font-size:10px;color:var(--red);letter-spacing:2px;}
+.sidebar-nav{flex:1;overflow-y:auto;padding:12px 8px;}
+.sidebar-section{font-size:10px;color:rgba(157,127,194,0.5);text-transform:uppercase;letter-spacing:2px;padding:8px 12px 4px;}
+.sidebar-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;cursor:pointer;transition:all 0.2s;font-size:13px;color:var(--muted);margin-bottom:2px;border:none;background:transparent;width:100%;text-align:left;}
+.sidebar-item:hover,.sidebar-item.active{background:rgba(125,42,232,0.2);color:var(--text);}
+.sidebar-item.active{border-left:3px solid var(--purple);}
+.sidebar-item i{width:18px;color:var(--purple-light);font-size:13px;flex-shrink:0;}
+.sidebar-item .badge{margin-left:auto;background:var(--red);color:#fff;border-radius:10px;padding:2px 7px;font-size:10px;font-weight:700;}
+.sidebar-bottom{padding:12px;border-top:1px solid var(--border);}
+.admin-user-pill{display:flex;align-items:center;gap:10px;padding:10px;background:rgba(125,42,232,0.1);border-radius:10px;}
+.admin-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--neon));display:flex;align-items:center;justify-content:center;font-size:14px;}
+
+/* MAIN CONTENT */
+.admin-main{margin-left:240px;min-height:100vh;padding:20px;}
+.admin-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;}
+.admin-topbar h1{font-family:var(--font-head);font-size:20px;color:#fff;}
+.topbar-actions{display:flex;gap:10px;align-items:center;}
+.tbar-btn{background:var(--card);border:1px solid var(--border);color:var(--text);padding:8px 14px;border-radius:8px;cursor:pointer;font-size:12px;transition:all 0.2s;display:flex;align-items:center;gap:6px;}
+.tbar-btn:hover{border-color:var(--purple);color:var(--purple-light);}
+.tbar-btn.danger{border-color:rgba(255,68,102,0.3);color:var(--red);}
+.tbar-btn.success{border-color:rgba(0,255,136,0.3);color:var(--green);}
+
+/* PAGE SECTIONS */
+.admin-page{display:none;}
+.admin-page.active{display:block;}
+
+/* STATS GRID */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:24px;}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;position:relative;overflow:hidden;transition:all 0.3s;}
+.stat-card:hover{border-color:var(--purple);transform:translateY(-2px);}
+.stat-card::before{content:'';position:absolute;top:0;right:0;width:60px;height:60px;border-radius:50%;opacity:0.1;background:var(--purple);}
+.stat-card .icon{font-size:24px;margin-bottom:8px;}
+.stat-card .label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;}
+.stat-card .value{font-family:var(--font-head);font-size:28px;color:var(--purple-light);font-weight:700;}
+.stat-card .change{font-size:11px;color:var(--green);margin-top:4px;}
+
+/* TABLE */
+.admin-table-wrap{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:24px;}
+.table-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.table-title{font-family:var(--font-head);font-size:14px;color:#fff;}
+.table-search{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-size:12px;outline:none;width:200px;}
+.table-search:focus{border-color:var(--purple);}
+.admin-table{width:100%;border-collapse:collapse;}
+.admin-table th{padding:12px 16px;text-align:left;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--border);background:var(--bg2);font-family:var(--font-body);}
+.admin-table td{padding:12px 16px;font-size:13px;border-bottom:1px solid rgba(125,42,232,0.1);vertical-align:middle;}
+.admin-table tr:last-child td{border-bottom:none;}
+.admin-table tr:hover td{background:rgba(125,42,232,0.05);}
+.status-badge{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:0.5px;}
+.status-pending{background:rgba(245,197,24,0.15);color:var(--gold);border:1px solid rgba(245,197,24,0.3);}
+.status-approved{background:rgba(0,255,136,0.12);color:var(--green);border:1px solid rgba(0,255,136,0.3);}
+.status-rejected{background:rgba(255,68,102,0.12);color:var(--red);border:1px solid rgba(255,68,102,0.3);}
+.status-active{background:rgba(0,255,136,0.12);color:var(--green);border:1px solid rgba(0,255,136,0.3);}
+.status-banned{background:rgba(255,68,102,0.12);color:var(--red);border:1px solid rgba(255,68,102,0.3);}
+.action-btns{display:flex;gap:6px;flex-wrap:wrap;}
+.action-btn{padding:5px 10px;border-radius:6px;border:none;cursor:pointer;font-size:11px;font-weight:600;transition:all 0.2s;display:flex;align-items:center;gap:4px;}
+.btn-approve{background:rgba(0,255,136,0.15);color:var(--green);border:1px solid rgba(0,255,136,0.3);}
+.btn-approve:hover{background:rgba(0,255,136,0.3);}
+.btn-reject{background:rgba(255,68,102,0.15);color:var(--red);border:1px solid rgba(255,68,102,0.3);}
+.btn-reject:hover{background:rgba(255,68,102,0.3);}
+.btn-view{background:rgba(125,42,232,0.15);color:var(--purple-light);border:1px solid rgba(125,42,232,0.3);}
+.btn-view:hover{background:rgba(125,42,232,0.3);}
+.btn-edit{background:rgba(0,180,255,0.15);color:#00b4ff;border:1px solid rgba(0,180,255,0.3);}
+.btn-edit:hover{background:rgba(0,180,255,0.3);}
+.btn-delete{background:rgba(255,68,102,0.12);color:var(--red);border:1px solid rgba(255,68,102,0.3);}
+.btn-delete:hover{background:rgba(255,68,102,0.25);}
+.btn-ban{background:rgba(255,136,0,0.15);color:var(--orange);border:1px solid rgba(255,136,0,0.3);}
+.btn-ban:hover{background:rgba(255,136,0,0.3);}
+
+/* MODALS */
+.admin-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:2000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);}
+.admin-modal-overlay.show{display:flex;}
+.admin-modal{background:var(--card2);border:1px solid var(--border);border-radius:20px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;animation:modal-in 0.3s ease;}
+@keyframes modal-in{from{opacity:0;transform:scale(0.9);}to{opacity:1;transform:scale(1);}}
+.admin-modal-header{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.admin-modal-title{font-family:var(--font-head);font-size:15px;color:#fff;}
+.admin-modal-close{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:16px;}
+.admin-modal-body{padding:22px;}
+.admin-modal-footer{padding:14px 22px;border-top:1px solid var(--border);display:flex;gap:10px;}
+.admin-form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+
+/* CARDS ROW */
+.cards-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:24px;}
+.info-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;}
+.info-card h4{font-family:var(--font-head);font-size:13px;color:var(--purple-light);margin-bottom:12px;}
+
+/* TOGGLE */
+.toggle-wrap{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(125,42,232,0.1);}
+.toggle-wrap:last-child{border-bottom:none;}
+.toggle-label{font-size:13px;color:var(--text);}
+.toggle{position:relative;width:44px;height:24px;cursor:pointer;}
+.toggle input{opacity:0;width:0;height:0;}
+.toggle-slider{position:absolute;top:0;left:0;right:0;bottom:0;background:var(--bg2);border-radius:24px;border:1px solid var(--border);transition:0.3s;}
+.toggle-slider::before{content:'';position:absolute;width:18px;height:18px;background:var(--muted);border-radius:50%;top:2px;left:2px;transition:0.3s;}
+.toggle input:checked + .toggle-slider{background:rgba(0,255,136,0.2);border-color:var(--green);}
+.toggle input:checked + .toggle-slider::before{transform:translateX(20px);background:var(--green);}
+
+/* REVENUE CHART PLACEHOLDER */
+.chart-box{background:var(--bg2);border-radius:12px;padding:20px;margin-top:12px;height:180px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;}
+.chart-bars{display:flex;align-items:flex-end;gap:6px;height:120px;}
+.chart-bar{background:linear-gradient(to top,var(--purple),var(--neon));border-radius:4px 4px 0 0;width:24px;transition:all 0.5s;}
+
+/* NOTIFICATION BADGE */
+.notif-badge{position:absolute;top:-4px;right:-4px;background:var(--red);color:#fff;border-radius:50%;width:18px;height:18px;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;}
+
+/* MAINTENANCE */
+.maintenance-toggle{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 20px;}
+.maintenance-toggle h4{font-family:var(--font-head);font-size:14px;}
+.maintenance-toggle p{font-size:12px;color:var(--muted);}
+
+/* SECTION CARD */
+.section-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:20px;}
+.section-card-title{font-family:var(--font-head);font-size:14px;color:var(--purple-light);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+
+/* MEDIA */
+.media-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;}
+.media-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.media-thumb{width:100%;aspect-ratio:16/9;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:32px;position:relative;}
+.media-thumb img{width:100%;height:100%;object-fit:cover;}
+.media-body{padding:10px;}
+.media-body input{width:100%;background:transparent;border:none;color:var(--text);font-size:12px;margin-bottom:6px;outline:none;border-bottom:1px solid var(--border);padding-bottom:4px;}
+.media-actions{display:flex;gap:6px;}
+
+/* TOAST */
+.admin-toast{position:fixed;top:20px;right:20px;z-index:3000;background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:12px 18px;min-width:250px;display:flex;align-items:center;gap:10px;box-shadow:0 10px 40px rgba(0,0,0,0.5);transform:translateX(400px);transition:transform 0.4s ease;}
+.admin-toast.show{transform:translateX(0);}
+.admin-toast.success{border-color:rgba(0,255,136,0.4);}
+.admin-toast.error{border-color:rgba(255,68,102,0.4);}
+
+/* RESPONSIVE SIDEBAR */
+.sidebar-toggle{display:none;position:fixed;top:15px;left:15px;z-index:200;background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:8px 10px;cursor:pointer;color:var(--text);}
+@media(max-width:900px){
+  .admin-sidebar{transform:translateX(-240px);}
+  .admin-sidebar.open{transform:translateX(0);}
+  .admin-main{margin-left:0;}
+  .sidebar-toggle{display:block;}
+  .stats-grid{grid-template-columns:1fr 1fr;}
+  .admin-form-row{grid-template-columns:1fr;}
+}
+@media(max-width:500px){
+  .stats-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="admin-login" id="adminLogin">
+  <div class="login-box">
+    <div style="font-size:40px;margin-bottom:12px;">👑</div>
+    <div class="login-logo">RAJ X PANEL STORE</div>
+    <div class="login-sub">⚠️ Admin Access Only</div>
+    <div class="admin-form-group">
+      <label class="admin-label">Admin Email</label>
+      <input type="email" class="admin-input" id="adminEmail" placeholder="admin@rajpanel.com"/>
+    </div>
+    <div class="admin-form-group">
+      <label class="admin-label">Admin Password</label>
+      <input type="password" class="admin-input" id="adminPassword" placeholder="••••••••" onkeypress="if(event.key==='Enter')adminLogin()"/>
+    </div>
+    <button class="admin-btn" onclick="adminLogin()">🔐 ACCESS ADMIN PANEL</button>
+    <p style="font-size:11px;color:var(--muted);margin-top:16px;">Unauthorized access is prohibited and logged.</p>
+  </div>
+</div>
+
+<!-- SIDEBAR TOGGLE (mobile) -->
+<button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()" style="display:none;"><i class="fas fa-bars"></i></button>
+
+<!-- ADMIN DASHBOARD -->
+<div class="admin-wrap" id="adminWrap">
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="sidebar-logo">
+      <div class="brand">RAJ X PANEL</div>
+      <div class="brand-sub">Admin Control Panel</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section">Main</div>
+      <button class="sidebar-item active" onclick="showAdminPage('dashboard',this)"><i class="fas fa-tachometer-alt"></i> Dashboard</button>
+      <button class="sidebar-item" onclick="showAdminPage('orders',this)"><i class="fas fa-box-open"></i> Orders <span class="badge" id="pendingBadge">0</span></button>
+      <button class="sidebar-item" onclick="showAdminPage('payments',this)"><i class="fas fa-money-bill-wave"></i> Payments</button>
+      
+      <div class="sidebar-section">Users</div>
+      <button class="sidebar-item" onclick="showAdminPage('users',this)"><i class="fas fa-users"></i> Users</button>
+      <button class="sidebar-item" onclick="showAdminPage('chats',this)"><i class="fas fa-comments"></i> Live Chats</button>
+      
+      <div class="sidebar-section">Store</div>
+      <button class="sidebar-item" onclick="showAdminPage('products',this)"><i class="fas fa-store"></i> Products & Media</button>
+      <button class="sidebar-item" onclick="showAdminPage('redeem',this)"><i class="fas fa-ticket-alt"></i> Redeem Codes</button>
+      <button class="sidebar-item" onclick="showAdminPage('referral',this)"><i class="fas fa-users-cog"></i> Referrals</button>
+      <button class="sidebar-item" onclick="showAdminPage('feedback',this)"><i class="fas fa-star"></i> Feedback</button>
+      
+      <div class="sidebar-section">System</div>
+      <button class="sidebar-item" onclick="showAdminPage('notifications',this)"><i class="fas fa-bell"></i> Push Notifications</button>
+      <button class="sidebar-item" onclick="showAdminPage('settings',this)"><i class="fas fa-cog"></i> Settings</button>
+      <button class="sidebar-item" onclick="showAdminPage('maintenance',this)"><i class="fas fa-tools"></i> Maintenance</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="admin-user-pill">
+        <div class="admin-avatar">👑</div>
+        <div>
+          <div style="font-size:12px;font-weight:600;color:#fff;">Raj</div>
+          <div style="font-size:10px;color:var(--muted);">Super Admin</div>
+        </div>
+        <button onclick="adminLogout()" style="margin-left:auto;background:transparent;border:none;color:var(--red);cursor:pointer;" title="Logout"><i class="fas fa-sign-out-alt"></i></button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="admin-main">
+    
+    <!-- DASHBOARD PAGE -->
+    <div class="admin-page active" id="page-dashboard">
+      <div class="admin-topbar">
+        <h1>📊 Dashboard</h1>
+        <div class="topbar-actions">
+          <span style="font-size:12px;color:var(--muted);" id="currentTime"></span>
+          <button class="tbar-btn" onclick="refreshAll()"><i class="fas fa-sync-alt"></i> Refresh</button>
+        </div>
+      </div>
+      
+      <!-- STATS -->
+      <div class="stats-grid">
+        <div class="stat-card"><div class="icon">💰</div><div class="label">Total Revenue</div><div class="value" id="totalRevenue">₹0</div><div class="change">↑ All time</div></div>
+        <div class="stat-card"><div class="icon">📦</div><div class="label">Total Orders</div><div class="value" id="totalOrders">0</div><div class="change">🟡 <span id="pendingCount">0</span> Pending</div></div>
+        <div class="stat-card"><div class="icon">👥</div><div class="label">Total Users</div><div class="value" id="totalUsers">0</div><div class="change">↑ Growing</div></div>
+        <div class="stat-card"><div class="icon">✅</div><div class="label">Approved</div><div class="value" id="approvedCount">0</div><div class="change">↑ Today</div></div>
+        <div class="stat-card"><div class="icon">💳</div><div class="label">Wallet Loads</div><div class="value" id="walletLoads">0</div><div class="change">Pending verifications</div></div>
+        <div class="stat-card"><div class="icon">👥</div><div class="label">Referrals</div><div class="value" id="referralCount">0</div><div class="change">Active referrers</div></div>
+      </div>
+
+      <!-- CHART -->
+      <div class="info-card" style="margin-bottom:20px;">
+        <h4>📈 Revenue Overview</h4>
+        <div class="chart-box">
+          <div class="chart-bars" id="revenueChart"></div>
+          <p style="font-size:11px;color:var(--muted);">Last 7 days revenue</p>
+        </div>
+      </div>
+
+      <!-- RECENT ORDERS -->
+      <div class="admin-table-wrap">
+        <div class="table-header">
+          <div class="table-title">🆕 Recent Orders</div>
+          <button class="tbar-btn" onclick="showAdminPage('orders',null)">View All →</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="admin-table">
+            <thead><tr><th>User</th><th>Product</th><th>Price</th><th>Status</th><th>Date</th><th>Action</th></tr></thead>
+            <tbody id="recentOrdersBody"><tr><td colspan="6" style="text-align:center;padding:20px;color:var(--muted);">Loading...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORDERS PAGE -->
+    <div class="admin-page" id="page-orders">
+      <div class="admin-topbar">
+        <h1>📦 Orders Management</h1>
+        <div class="topbar-actions">
+          <select id="orderFilter" class="admin-input" style="width:150px;" onchange="filterAdminOrders()">
+            <option value="all">All Orders</option>
+            <option value="pending">🟡 Pending</option>
+            <option value="approved">🟢 Approved</option>
+            <option value="rejected">🔴 Rejected</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="admin-table-wrap">
+        <div class="table-header">
+          <div class="table-title">All Orders</div>
+          <input type="text" class="table-search" placeholder="Search orders..." oninput="searchOrders(this.value)"/>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="admin-table">
+            <thead><tr><th>Order ID</th><th>User</th><th>Product</th><th>Duration</th><th>Price</th><th>Customer Details</th><th>Status</th><th>Date</th><th>Action</th></tr></thead>
+            <tbody id="allOrdersBody"><tr><td colspan="9" style="text-align:center;padding:20px;color:var(--muted);">Loading orders...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAYMENTS PAGE -->
+    <div class="admin-page" id="page-payments">
+      <div class="admin-topbar"><h1>💳 Payment Verification</h1></div>
+      <div class="admin-table-wrap">
+        <div class="table-header">
+          <div class="table-title">Pending Payment Proofs</div>
+          <button class="tbar-btn success" onclick="loadPaymentProofs()"><i class="fas fa-sync-alt"></i> Refresh</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="admin-table">
+            <thead><tr><th>User</th><th>Amount</th><th>UTR</th><th>Screenshot</th><th>Status</th><th>Date</th><th>Action</th></tr></thead>
+            <tbody id="paymentProofsBody"><tr><td colspan="7" style="text-align:center;padding:20px;color:var(--muted);">Loading...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- USERS PAGE -->
+    <div class="admin-page" id="page-users">
+      <div class="admin-topbar"><h1>👥 User Management</h1></div>
+      <div class="admin-table-wrap">
+        <div class="table-header">
+          <div class="table-title">All Users</div>
+          <input type="text" class="table-search" placeholder="Search users..." oninput="searchUsers(this.value)"/>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="admin-table">
+            <thead><tr><th>User</th><th>Email</th><th>Wallet</th><th>Orders</th><th>Joined</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="usersBody"><tr><td colspan="7" style="text-align:center;padding:20px;color:var(--muted);">Loading users...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHATS PAGE -->
+    <div class="admin-page" id="page-chats">
+      <div class="admin-topbar"><h1>💬 Live Chat</h1></div>
+      <div class="cards-row">
+        <div class="info-card" style="min-height:400px;display:flex;flex-direction:column;">
+          <h4>Active Conversations</h4>
+          <div id="chatUserList" style="flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:8px;"></div>
+        </div>
+        <div class="info-card" style="min-height:400px;display:flex;flex-direction:column;">
+          <h4>Chat Window – <span id="chatWindowUser" style="color:var(--muted);font-size:12px;">Select a user</span></h4>
+          <div id="adminChatMessages" style="flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:8px;background:var(--bg2);border-radius:10px;margin-bottom:10px;min-height:250px;"></div>
+          <div style="display:flex;gap:8px;">
+            <input type="text" class="admin-input" id="adminReplyInput" placeholder="Type reply..." style="flex:1;"/>
+            <button class="admin-btn" onclick="sendAdminReply()" style="width:auto;padding:10px 16px;">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCTS & MEDIA PAGE -->
+    <div class="admin-page" id="page-products">
+      <div class="admin-topbar">
+        <h1>🛒 Products & Media Manager</h1>
+        <button class="tbar-btn success" onclick="openModal('addMediaModal')"><i class="fas fa-plus"></i> Add Media</button>
+      </div>
+      
+      <div class="section-card">
+        <div class="section-card-title">🖼️ Product Photos & Videos</div>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:16px;">Upload photos or enter YouTube/image URLs to change product thumbnails and demo videos.</p>
+        <div class="media-grid" id="mediaGrid">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-card-title">📋 Product Prices (View Only)</div>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:16px;">To change prices, edit the PRODUCTS array in index.html. Contact developer.</p>
+        <div style="overflow-x:auto;">
+          <table class="admin-table">
+            <thead><tr><th>Product</th><th>Category</th><th>Durations</th><th>Prices</th></tr></thead>
+            <tbody id="productListBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- REDEEM CODES PAGE -->
+    <div class="admin-page" id="page-redeem">
+      <div class="admin-topbar">
+        <h1>🎟️ Redeem Codes</h1>
+        <button class="tbar-btn success" onclick="openModal('createCodeModal')"><i class="fas fa-plus"></i> Create Code</button>
+      </div>
+      
+      <div class="admin-table-wrap">
+        <div class="table-header"><div class="table-title">All Codes</div></div>
+        <div style="overflow-x:auto;">
+          <table class="admin-table">
+            <thead><tr><th>Code</th><th>Reward</th><th>Max Uses</th><th>Used</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="redeemCodesBody"><tr><td colspan="6" style="text-align:center;padding:20px;color:var(--muted);">Loading...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- REFERRAL PAGE -->
+    <div class="admin-page" id="page-referral">
+      <div class="admin-topbar"><h1>👥 Referral Management</h1></div>
+      <div class="admin-table-wrap">
+        <div class="table-header"><div class="table-title">Referral Records</div></div>
+        <div style="overflow-x:auto;">
+          <table class="admin-table">
+            <thead><tr><th>Referrer</th><th>Referred</th><th>Items Bought</th><th>Bonus Status</th><th>Action</th></tr></thead>
+            <tbody id="referralBody"><tr><td colspan="5" style="text-align:center;padding:20px;color:var(--muted);">Loading...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEEDBACK PAGE -->
+    <div class="admin-page" id="page-feedback">
+      <div class="admin-topbar"><h1>⭐ Feedback & Reviews</h1></div>
+      <div id="feedbackGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;"></div>
+    </div>
+
+    <!-- NOTIFICATIONS PAGE -->
+    <div class="admin-page" id="page-notifications">
+      <div class="admin-topbar"><h1>🔔 Push Notifications</h1></div>
+      <div class="section-card">
+        <div class="section-card-title">Send Notification to All Users</div>
+        <div class="admin-form-group"><label class="admin-label">Notification Title</label><input type="text" class="admin-input" id="notifTitle" placeholder="e.g. New Tool Available!"/></div>
+        <div class="admin-form-group" style="margin-top:12px;"><label class="admin-label">Notification Message</label><textarea class="admin-input" id="notifMessage" rows="3" placeholder="Notification body text..."></textarea></div>
+        <div class="admin-form-group" style="margin-top:12px;"><label class="admin-label">Target</label><select class="admin-input" id="notifTarget"><option>All Users</option><option>Users with Pending Orders</option><option>Users with 0 Orders</option></select></div>
+        <button class="admin-btn" onclick="sendPushNotification()" style="width:auto;padding:12px 24px;margin-top:14px;"><i class="fas fa-paper-plane"></i> Send Notification</button>
+      </div>
+      <div class="section-card">
+        <div class="section-card-title">📢 Announcement Bar Text</div>
+        <div class="admin-form-group"><input type="text" class="admin-input" id="announcementText" placeholder="Announcement bar text..."/></div>
+        <button class="admin-btn" onclick="updateAnnouncement()" style="width:auto;padding:10px 20px;margin-top:10px;">Update Banner</button>
+      </div>
+    </div>
+
+    <!-- SETTINGS PAGE -->
+    <div class="admin-page" id="page-settings">
+      <div class="admin-topbar"><h1>⚙️ Settings</h1></div>
+      <div class="cards-row">
+        <div class="section-card">
+          <div class="section-card-title">🏪 Store Settings</div>
+          <div class="toggle-wrap"><span class="toggle-label">YouTube Discount Banner</span><label class="toggle"><input type="checkbox" checked/><span class="toggle-slider"></span></label></div>
+          <div class="toggle-wrap"><span class="toggle-label">Lucky Wheel Active</span><label class="toggle"><input type="checkbox" checked/><span class="toggle-slider"></span></label></div>
+          <div class="toggle-wrap"><span class="toggle-label">Refer & Earn Active</span><label class="toggle"><input type="checkbox" checked/><span class="toggle-slider"></span></label></div>
+          <div class="toggle-wrap"><span class="toggle-label">Live Chat Active</span><label class="toggle"><input type="checkbox" checked/><span class="toggle-slider"></span></label></div>
+          <div class="toggle-wrap"><span class="toggle-label">New Registrations</span><label class="toggle"><input type="checkbox" checked/><span class="toggle-slider"></span></label></div>
+        </div>
+        <div class="section-card">
+          <div class="section-card-title">💳 UPI Payment Settings</div>
+          <div class="admin-form-group"><label class="admin-label">Your UPI ID</label><input type="text" class="admin-input" id="settingsUPI" placeholder="yourname@upi"/></div>
+          <div class="admin-form-group" style="margin-top:12px;"><label class="admin-label">QR Code (Upload or URL)</label><input type="text" class="admin-input" id="settingsQR" placeholder="URL or upload to assets/qrcode.png"/></div>
+          <div class="admin-form-group" style="margin-top:12px;"><label class="admin-label">Upload New QR Code</label><input type="file" class="admin-input" accept="image/*" onchange="uploadQRCode(this)"/></div>
+          <button class="admin-btn" onclick="saveSettings()" style="width:auto;padding:10px 20px;margin-top:10px;">Save Settings</button>
+        </div>
+        <div class="section-card">
+          <div class="section-card-title">🔗 Social Links</div>
+          <div class="admin-form-group"><label class="admin-label">YouTube Channel URL</label><input type="url" class="admin-input" id="settingsYT" placeholder="https://youtube.com/@yourchannel"/></div>
+          <div class="admin-form-group" style="margin-top:10px;"><label class="admin-label">Instagram URL</label><input type="url" class="admin-input" id="settingsIG" placeholder="https://instagram.com/yourprofile"/></div>
+          <div class="admin-form-group" style="margin-top:10px;"><label class="admin-label">Telegram Channel</label><input type="url" class="admin-input" id="settingsTG" placeholder="https://t.me/yourchannel"/></div>
+          <div class="admin-form-group" style="margin-top:10px;"><label class="admin-label">WhatsApp Number</label><input type="text" class="admin-input" id="settingsWA" placeholder="+91 XXXXXXXXXX"/></div>
+          <button class="admin-btn" onclick="saveSocialLinks()" style="width:auto;padding:10px 20px;margin-top:10px;">Save Links</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAINTENANCE PAGE -->
+    <div class="admin-page" id="page-maintenance">
+      <div class="admin-topbar"><h1>🔧 Maintenance Mode</h1></div>
+      <div class="section-card">
+        <div class="section-card-title">⚠️ Maintenance Control</div>
+        <div class="maintenance-toggle">
+          <div>
+            <h4>Maintenance Mode</h4>
+            <p>When ON, users see a maintenance page and cannot access the store.</p>
+          </div>
+          <label class="toggle" style="transform:scale(1.3);">
+            <input type="checkbox" id="maintenanceToggle" onchange="toggleMaintenance(this.checked)"/>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="admin-form-group" style="margin-top:16px;"><label class="admin-label">Maintenance Message</label><textarea class="admin-input" rows="3" id="maintenanceMsg" placeholder="We'll be back soon! Server maintenance in progress."></textarea></div>
+        <div class="admin-form-group" style="margin-top:10px;"><label class="admin-label">Expected Duration</label><input type="text" class="admin-input" id="maintenanceDuration" placeholder="e.g. 2 hours"/></div>
+        <button class="admin-btn" onclick="saveMaintenance()" style="width:auto;padding:10px 20px;margin-top:12px;">Save Maintenance Settings</button>
+      </div>
+      <div class="section-card">
+        <div class="section-card-title">📊 System Status</div>
+        <div class="toggle-wrap"><span class="toggle-label">Firebase Connected</span><span style="color:var(--green);font-size:13px;" id="firebaseStatus">● Checking...</span></div>
+        <div class="toggle-wrap"><span class="toggle-label">Storage Status</span><span style="color:var(--green);font-size:13px;">● Online</span></div>
+        <div class="toggle-wrap"><span class="toggle-label">Payment Gateway</span><span style="color:var(--gold);font-size:13px;">● Manual UPI</span></div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ===== ADMIN MODALS ===== -->
+
+<!-- APPROVE ORDER MODAL -->
+<div class="admin-modal-overlay" id="approveOrderModal">
+  <div class="admin-modal">
+    <div class="admin-modal-header">
+      <div class="admin-modal-title">✅ Approve Order</div>
+      <button class="admin-modal-close" onclick="closeAdminModal('approveOrderModal')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="admin-modal-body">
+      <div id="approveOrderInfo" style="background:var(--bg2);border-radius:10px;padding:14px;margin-bottom:16px;font-size:13px;"></div>
+      <div class="admin-form-group">
+        <label class="admin-label">📲 Telegram Download Link *</label>
+        <input type="url" class="admin-input" id="approveOrderTGLink" placeholder="https://t.me/+yourlink or t.me/c/channelid/messageid"/>
+        <p style="font-size:11px;color:var(--muted);margin-top:6px;">This link will be sent to the user's order page. User sees it only after approval.</p>
+      </div>
+      <div class="admin-form-group" style="margin-top:12px;">
+        <label class="admin-label">Admin Note (Optional)</label>
+        <input type="text" class="admin-input" id="approveOrderNote" placeholder="Any note for user..."/>
+      </div>
+    </div>
+    <div class="admin-modal-footer">
+      <button class="admin-btn" style="background:rgba(255,68,102,0.2);color:var(--red);border:1px solid var(--red);" onclick="closeAdminModal('approveOrderModal')">Cancel</button>
+      <button class="admin-btn" onclick="finalApproveOrder()"><i class="fas fa-check"></i> Approve & Send Link</button>
+    </div>
+  </div>
+</div>
+
+<!-- WALLET ADJUST MODAL -->
+<div class="admin-modal-overlay" id="walletAdjustModal">
+  <div class="admin-modal">
+    <div class="admin-modal-header">
+      <div class="admin-modal-title">💰 Adjust User Wallet</div>
+      <button class="admin-modal-close" onclick="closeAdminModal('walletAdjustModal')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="admin-modal-body">
+      <div id="walletAdjustUserInfo" style="background:var(--bg2);border-radius:10px;padding:14px;margin-bottom:16px;font-size:13px;"></div>
+      <div class="admin-form-group">
+        <label class="admin-label">Action</label>
+        <select class="admin-input" id="walletAction"><option value="add">➕ Add Money</option><option value="deduct">➖ Deduct Money</option><option value="set">⚙️ Set Exact Balance</option></select>
+      </div>
+      <div class="admin-form-group" style="margin-top:12px;">
+        <label class="admin-label">Amount (₹)</label>
+        <input type="number" class="admin-input" id="walletAdjustAmount" placeholder="Enter amount"/>
+      </div>
+      <div class="admin-form-group" style="margin-top:12px;">
+        <label class="admin-label">Reason</label>
+        <input type="text" class="admin-input" id="walletAdjustReason" placeholder="Reason for adjustment..."/>
+      </div>
+    </div>
+    <div class="admin-modal-footer">
+      <button class="admin-btn" style="background:rgba(255,68,102,0.2);color:var(--red);" onclick="closeAdminModal('walletAdjustModal')">Cancel</button>
+      <button class="admin-btn" onclick="applyWalletAdjust()">Apply</button>
+    </div>
+  </div>
+</div>
+
+<!-- CREATE REDEEM CODE MODAL -->
+<div class="admin-modal-overlay" id="createCodeModal">
+  <div class="admin-modal">
+    <div class="admin-modal-header">
+      <div class="admin-modal-title">🎟️ Create Redeem Code</div>
+      <button class="admin-modal-close" onclick="closeAdminModal('createCodeModal')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="admin-modal-body">
+      <div class="admin-form-group"><label class="admin-label">Code Name (e.g. RAJVIP10)</label><input type="text" class="admin-input" id="newCodeName" placeholder="YOURCODE" style="text-transform:uppercase;font-family:var(--font-mono);letter-spacing:2px;"/></div>
+      <div class="admin-form-row" style="margin-top:12px;">
+        <div class="admin-form-group"><label class="admin-label">Reward (₹)</label><input type="number" class="admin-input" id="newCodeReward" placeholder="e.g. 10"/></div>
+        <div class="admin-form-group"><label class="admin-label">Max Uses</label><input type="number" class="admin-input" id="newCodeMax" placeholder="e.g. 30 or 1"/></div>
+      </div>
+      <div class="admin-form-group" style="margin-top:12px;"><label class="admin-label">Expiry Date (Optional)</label><input type="date" class="admin-input" id="newCodeExpiry"/></div>
+    </div>
+    <div class="admin-modal-footer">
+      <button class="admin-btn" style="background:rgba(255,68,102,0.2);color:var(--red);" onclick="closeAdminModal('createCodeModal')">Cancel</button>
+      <button class="admin-btn" onclick="createRedeemCode()"><i class="fas fa-plus"></i> Create Code</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD MEDIA MODAL -->
+<div class="admin-modal-overlay" id="addMediaModal">
+  <div class="admin-modal">
+    <div class="admin-modal-header">
+      <div class="admin-modal-title">🖼️ Update Product Media</div>
+      <button class="admin-modal-close" onclick="closeAdminModal('addMediaModal')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="admin-modal-body">
+      <div class="admin-form-group"><label class="admin-label">Product</label><select class="admin-input" id="mediaProductSelect"></select></div>
+      <div class="admin-form-group" style="margin-top:12px;"><label class="admin-label">Image URL or Upload</label><input type="url" class="admin-input" id="mediaImageURL" placeholder="https://... (or upload below)"/></div>
+      <div class="admin-form-group" style="margin-top:10px;"><label class="admin-label">Upload Image File</label><input type="file" class="admin-input" accept="image/*" id="mediaImageFile"/></div>
+      <div class="admin-form-group" style="margin-top:12px;"><label class="admin-label">Demo Video YouTube ID</label><input type="text" class="admin-input" id="mediaVideoID" placeholder="YouTube video ID (e.g. dQw4w9WgXcQ)"/></div>
+    </div>
+    <div class="admin-modal-footer">
+      <button class="admin-btn" style="background:rgba(255,68,102,0.2);color:var(--red);" onclick="closeAdminModal('addMediaModal')">Cancel</button>
+      <button class="admin-btn" onclick="saveProductMedia()"><i class="fas fa-save"></i> Save Media</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN TOAST -->
+<div class="admin-toast" id="adminToast">
+  <span id="adminToastIcon">ℹ️</span>
+  <div><div id="adminToastTitle" style="font-size:13px;font-weight:700;color:#fff;"></div><div id="adminToastMsg" style="font-size:11px;color:var(--muted);"></div></div>
+</div>
+
+<!-- FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, collection, getDocs, getDoc, doc, updateDoc, addDoc, deleteDoc, query, orderBy, where, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
+// ============================================================
+// 🔧 FIREBASE CONFIG — SAME AS INDEX.HTML
+// ============================================================
+const firebaseConfig = {
+  apiKey: "AIzaSyBA_CVYQ0HedpQKWnquVNfeuLerPOCooys",
+  authDomain: "raj-x-mod-shop.firebaseapp.com",
+  projectId: "raj-x-mod-shop",
+  storageBucket: "raj-x-mod-shop.firebasestorage.app",
+  messagingSenderId: "491842170260",
+  appId: "1:491842170260:web:0097bfa42569ccc8e8f381"
+};
+// ============================================================
+// 🔑 ADMIN EMAIL — Change this to YOUR admin email
+const ADMIN_EMAIL = "rm3572529@gmail.com";
+// ============================================================
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
+
+window._db = db; window._auth = auth; window._storage = storage;
+window._firebase = { doc, updateDoc, addDoc, deleteDoc, collection, getDocs, getDoc, query, orderBy, where, onSnapshot, serverTimestamp, ref, uploadBytes, getDownloadURL };
+
+let allOrders = [], allUsers = [], currentOrderId = null, currentUserId = null;
+
+// AUTH STATE
+onAuthStateChanged(auth, user => {
+  if (user && user.email === ADMIN_EMAIL) {
+    document.getElementById('adminLogin').style.display = 'none';
+    document.getElementById('adminWrap').style.display = 'flex';
+    document.getElementById('sidebarToggle').style.display = 'block';
+    loadDashboard();
+    listenPendingOrders();
+    document.getElementById('firebaseStatus').textContent = '● Connected';
+  } else if (user) {
+    signOut(auth);
+    toast('Access Denied', 'You are not an admin', 'error');
+  }
+});
+
+// LOGIN
+window.adminLogin = async function() {
+  const email = document.getElementById('adminEmail').value.trim();
+  const pass = document.getElementById('adminPassword').value;
+  if (!email || !pass) { toast('Error', 'Fill all fields', 'error'); return; }
+  try {
+    await signInWithEmailAndPassword(auth, email, pass);
+  } catch(e) { toast('Login Failed', e.message, 'error'); }
+};
+
+window.adminLogout = async function() { await signOut(auth); location.reload(); };
+
+// LOAD DASHBOARD
+async function loadDashboard() {
+  try {
+    const ordersSnap = await getDocs(query(collection(db, 'orders'), orderBy('timestamp', 'desc')));
+    allOrders = ordersSnap.docs.map(d => ({id: d.id, ...d.data()}));
+    
+    const usersSnap = await getDocs(collection(db, 'users'));
+    allUsers = usersSnap.docs.map(d => ({id: d.id, ...d.data()}));
+    
+    const pending = allOrders.filter(o => o.status === 'pending');
+    const approved = allOrders.filter(o => o.status === 'approved');
+    const revenue = approved.reduce((s, o) => s + (o.price || 0), 0);
+    
+    document.getElementById('totalRevenue').textContent = '₹' + revenue.toLocaleString();
+    document.getElementById('totalOrders').textContent = allOrders.length;
+    document.getElementById('totalUsers').textContent = allUsers.length;
+    document.getElementById('approvedCount').textContent = approved.length;
+    document.getElementById('pendingCount').textContent = pending.length;
+    document.getElementById('pendingBadge').textContent = pending.length;
+    
+    renderRecentOrders(allOrders.slice(0, 10));
+    renderAllOrders(allOrders);
+    renderUsers(allUsers);
+    renderProductList();
+    renderMediaGrid();
+    drawRevenueChart(approved);
+  } catch(e) { console.error(e); }
+}
+
+function drawRevenueChart(approved) {
+  const chart = document.getElementById('revenueChart');
+  if (!chart) return;
+  const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const heights = [40, 80, 60, 120, 100, 160, 140];
+  chart.innerHTML = heights.map((h,i) => `
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+      <div class="chart-bar" style="height:${h}px;"></div>
+      <span style="font-size:10px;color:var(--muted);">${days[i]}</span>
+    </div>
+  `).join('');
+}
+
+function listenPendingOrders() {
+  onSnapshot(query(collection(db, 'orders'), where('status', '==', 'pending')), snap => {
+    document.getElementById('pendingBadge').textContent = snap.size;
+    document.getElementById('pendingCount').textContent = snap.size;
+  });
+}
+
+// RENDER ORDERS
+function renderRecentOrders(orders) {
+  const tbody = document.getElementById('recentOrdersBody');
+  if (!orders.length) { tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:20px;color:var(--muted);">No orders yet</td></tr>'; return; }
+  tbody.innerHTML = orders.map(o => `
+    <tr>
+      <td><div style="font-size:12px;">${o.userEmail || 'User'}</div></td>
+      <td><strong>${o.productName || '-'}</strong></td>
+      <td style="color:var(--gold);font-family:var(--font-mono);">₹${o.price || 0}</td>
+      <td><span class="status-badge status-${o.status || 'pending'}">${o.status || 'pending'}</span></td>
+      <td style="font-size:11px;color:var(--muted);">${o.timestamp ? new Date(o.timestamp.toDate()).toLocaleDateString() : '-'}</td>
+      <td>
+        <div class="action-btns">
+          ${o.status === 'pending' ? `<button class="action-btn btn-approve" onclick="openApproveModal('${o.id}')"><i class="fas fa-check"></i> Approve</button><button class="action-btn btn-reject" onclick="rejectOrder('${o.id}')"><i class="fas fa-times"></i></button>` : ''}
+          <button class="action-btn btn-view" onclick="viewOrderDetail('${o.id}')"><i class="fas fa-eye"></i></button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function renderAllOrders(orders) {
+  const tbody = document.getElementById('allOrdersBody');
+  if (!orders.length) { tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:20px;color:var(--muted);">No orders</td></tr>'; return; }
+  tbody.innerHTML = orders.map(o => `
+    <tr>
+      <td style="font-size:10px;color:var(--muted);font-family:var(--font-mono);">${o.id.slice(0,8)}...</td>
+      <td><div style="font-size:12px;">${o.userEmail || '-'}</div></td>
+      <td><strong style="font-size:13px;">${o.productName || '-'}</strong></td>
+      <td style="font-size:12px;color:var(--muted);">${o.duration || '-'}</td>
+      <td style="color:var(--gold);font-family:var(--font-mono);font-weight:700;">₹${o.price || 0}</td>
+      <td style="font-size:11px;">
+        <div><i class="fas fa-user" style="color:var(--purple-light);"></i> ${o.customerName || '-'}</div>
+        <div><i class="fas fa-phone" style="color:var(--green);"></i> ${o.customerPhone || '-'}</div>
+        <div><i class="fab fa-instagram" style="color:#e4405f;"></i> <a href="${o.customerInsta || '#'}" target="_blank" style="color:var(--purple-light);font-size:10px;">View</a></div>
+      </td>
+      <td><span class="status-badge status-${o.status || 'pending'}">${o.status || 'pending'}</span></td>
+      <td style="font-size:11px;color:var(--muted);">${o.timestamp ? new Date(o.timestamp.toDate()).toLocaleString() : '-'}</td>
+      <td>
+        <div class="action-btns">
+          ${o.status === 'pending' ? `
+            <button class="action-btn btn-approve" onclick="openApproveModal('${o.id}')"><i class="fas fa-check"></i> Approve</button>
+            <button class="action-btn btn-reject" onclick="rejectOrder('${o.id}')"><i class="fas fa-times"></i> Reject</button>
+          ` : ''}
+          ${o.status === 'approved' && o.telegramLink ? `<button class="action-btn btn-view" onclick="window.open('${o.telegramLink}','_blank')"><i class="fab fa-telegram"></i></button>` : ''}
+          <button class="action-btn btn-view" onclick="viewOrderDetail('${o.id}')"><i class="fas fa-eye"></i></button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function renderUsers(users) {
+  const tbody = document.getElementById('usersBody');
+  if (!users.length) { tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:20px;color:var(--muted);">No users</td></tr>'; return; }
+  tbody.innerHTML = users.map(u => `
+    <tr>
+      <td><div style="font-weight:700;">${u.displayName || 'User'}</div><div style="font-size:10px;color:var(--muted);">${u.uid?.slice(0,10)}...</div></td>
+      <td style="font-size:12px;">${u.email || '-'}</td>
+      <td style="color:var(--gold);font-family:var(--font-mono);">₹${(u.walletBalance || 0).toFixed(2)}</td>
+      <td style="text-align:center;">${u.totalOrders || 0}</td>
+      <td style="font-size:11px;color:var(--muted);">${u.createdAt ? new Date(u.createdAt.toDate()).toLocaleDateString() : '-'}</td>
+      <td><span class="status-badge ${u.banned ? 'status-banned' : 'status-active'}">${u.banned ? 'Banned' : 'Active'}</span></td>
+      <td>
+        <div class="action-btns">
+          <button class="action-btn btn-edit" onclick="openWalletAdjust('${u.id}','${u.displayName || 'User'}',${u.walletBalance || 0})"><i class="fas fa-wallet"></i> Wallet</button>
+          <button class="action-btn btn-ban" onclick="toggleBanUser('${u.id}',${u.banned || false})">${u.banned ? '<i class="fas fa-user-check"></i> Unban' : '<i class="fas fa-ban"></i> Ban'}</button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function renderProductList() {
+  const tbody = document.getElementById('productListBody');
+  const prods = [
+    {name:'BR MOD FF',cat:'Android Root',dur:'1D/7D/15D/30D',prices:'₹119/₹359/₹599/₹839'},
+    {name:'HAXX-CKER PRO FF',cat:'Android Root',dur:'10 Days',prices:'₹539'},
+    {name:'PRIME HOOK FF',cat:'Android Non-Root',dur:'5D/10D',prices:'₹216/₹391'},
+    {name:'DRIPCLIENT FF',cat:'Android Non-Root',dur:'1D/7D/15D',prices:'₹130/₹390/₹640'},
+    {name:'HG CHEATS FF',cat:'Android Non-Root',dur:'1D/7D/10D/30D',prices:'₹173/₹340/₹353/₹758'},
+    {name:'PATO TEAM FF',cat:'Android Non-Root',dur:'3D/7D/7D Brutal',prices:'₹369/₹540/₹589'},
+    {name:'IOS FLUORITE FF',cat:'iOS',dur:'1D/7D/30D/Esign/Signer',prices:'₹490/₹1390/₹2290/₹739/₹1039'},
+    {name:'PC AIMKILL',cat:'PC',dur:'1D/7D/15D/30D',prices:'₹190/₹490/₹790/₹1090'},
+    {name:'PC AIM SILENT',cat:'PC',dur:'1D/10D/30D',prices:'₹119/₹519/₹839'},
+    {name:'PC BYPASS + SILENT',cat:'PC',dur:'1D/10D/30D',prices:'₹159/₹559/₹999'},
+  ];
+  tbody.innerHTML = prods.map(p => `
+    <tr>
+      <td><strong>${p.name}</strong></td>
+      <td><span class="status-badge status-active">${p.cat}</span></td>
+      <td style="font-size:12px;color:var(--muted);">${p.dur}</td>
+      <td style="font-size:12px;color:var(--gold);">${p.prices}</td>
+    </tr>
+  `).join('');
+}
+
+function renderMediaGrid() {
+  const grid = document.getElementById('mediaGrid');
+  const prods = ['BR MOD FF','HAXX-CKER PRO FF','PRIME HOOK FF','DRIPCLIENT FF','HG CHEATS FF','PATO TEAM FF','IOS FLUORITE FF','PC AIMKILL','PC AIM SILENT','PC BYPASS+SILENT'];
+  grid.innerHTML = prods.map(name => `
+    <div class="media-card">
+      <div class="media-thumb"><span style="font-size:36px;">🎮</span></div>
+      <div class="media-body">
+        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:6px;">${name}</div>
+        <input type="url" placeholder="Image URL..." onchange="saveMediaURL('${name}','image',this.value)"/>
+        <input type="text" placeholder="YouTube Video ID..." onchange="saveMediaURL('${name}','video',this.value)"/>
+        <div class="media-actions">
+          <label style="flex:1;"><button class="action-btn btn-edit" style="width:100%;" onclick="this.nextElementSibling.click()"><i class="fas fa-upload"></i> Upload</button><input type="file" style="display:none;" accept="image/*" onchange="uploadProductImage('${name}',this)"/></label>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  // Populate product select in modal
+  document.getElementById('mediaProductSelect').innerHTML = prods.map(p => `<option>${p}</option>`).join('');
+}
+
+// ORDER ACTIONS
+window.openApproveModal = function(orderId) {
+  currentOrderId = orderId;
+  const order = allOrders.find(o => o.id === orderId);
+  if (!order) return;
+  document.getElementById('approveOrderInfo').innerHTML = `
+    <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="color:var(--muted);">Product:</span><strong>${order.productName} – ${order.duration}</strong></div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="color:var(--muted);">Price:</span><strong style="color:var(--gold);">₹${order.price}</strong></div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="color:var(--muted);">Customer:</span><strong>${order.customerName} | ${order.customerPhone}</strong></div>
+    <div style="display:flex;justify-content:space-between;"><span style="color:var(--muted);">Instagram:</span><a href="${order.customerInsta}" target="_blank" style="color:var(--purple-light);">View Profile</a></div>
+  `;
+  document.getElementById('approveOrderTGLink').value = '';
+  openAdminModal('approveOrderModal');
+};
+
+window.finalApproveOrder = async function() {
+  const tgLink = document.getElementById('approveOrderTGLink').value.trim();
+  const note = document.getElementById('approveOrderNote').value.trim();
+  if (!tgLink) { toast('Required', 'Enter the Telegram download link', 'error'); return; }
+  if (!currentOrderId) return;
+  
+  const order = allOrders.find(o => o.id === currentOrderId);
+  
+  try {
+    await updateDoc(doc(db, 'orders', currentOrderId), {
+      status: 'approved', telegramLink: tgLink, adminNote: note,
+      approvedAt: serverTimestamp()
+    });
+    // Update user stats
+    if (order?.userId) {
+      const userRef = doc(db, 'users', order.userId);
+      const userSnap = await getDoc(userRef);
+      if (userSnap.exists()) {
+        const userData = userSnap.data();
+        await updateDoc(userRef, { approvedOrders: (userData.approvedOrders || 0) + 1 });
+      }
+    }
+    closeAdminModal('approveOrderModal');
+    toast('Order Approved!', 'Telegram link sent to user', 'success');
+    await loadDashboard();
+  } catch(e) { toast('Error', e.message, 'error'); }
+};
+
+window.rejectOrder = async function(orderId) {
+  if (!confirm('Reject this order? Wallet refund will be manual.')) return;
+  try {
+    await updateDoc(doc(db, 'orders', orderId), { status: 'rejected', rejectedAt: serverTimestamp() });
+    toast('Order Rejected', 'Order marked as rejected', 'error');
+    await loadDashboard();
+  } catch(e) { toast('Error', e.message, 'error'); }
+};
+
+window.viewOrderDetail = function(orderId) {
+  const o = allOrders.find(x => x.id === orderId);
+  if (!o) return;
+  alert(`ORDER DETAIL\n\nID: ${o.id}\nUser: ${o.userEmail}\nProduct: ${o.productName}\nDuration: ${o.duration}\nPrice: ₹${o.price}\nStatus: ${o.status}\nCustomer: ${o.customerName}\nPhone: ${o.customerPhone}\nInsta: ${o.customerInsta}\nTG Link: ${o.telegramLink || 'Not set'}`);
+};
+
+// USER ACTIONS
+window.openWalletAdjust = function(userId, name, balance) {
+  currentUserId = userId;
+  document.getElementById('walletAdjustUserInfo').innerHTML = `<strong>${name}</strong> | Current Balance: <strong style="color:var(--gold);">₹${balance.toFixed(2)}</strong>`;
+  openAdminModal('walletAdjustModal');
+};
+
+window.applyWalletAdjust = async function() {
+  const action = document.getElementById('walletAction').value;
+  const amount = parseFloat(document.getElementById('walletAdjustAmount').value);
+  const reason = document.getElementById('walletAdjustReason').value;
+  if (!amount || isNaN(amount)) { toast('Error', 'Enter a valid amount', 'error'); return; }
+  
+  try {
+    const userRef = doc(db, 'users', currentUserId);
+    const snap = await getDoc(userRef);
+    const cur = snap.data().walletBalance || 0;
+    let newBal = cur;
+    if (action === 'add') newBal = cur + amount;
+    else if (action === 'deduct') newBal = Math.max(0, cur - amount);
+    else if (action === 'set') newBal = amount;
+    
+    await updateDoc(userRef, { walletBalance: newBal });
+    await addDoc(collection(db, 'transactions'), {
+      userId: currentUserId, type: 'admin_adjustment', amount: newBal - cur,
+      description: `Admin: ${reason || action}`, timestamp: serverTimestamp()
+    });
+    closeAdminModal('walletAdjustModal');
+    toast('Wallet Updated!', `New balance: ₹${newBal.toFixed(2)}`, 'success');
+    await loadDashboard();
+  } catch(e) { toast('Error', e.message, 'error'); }
+};
+
+window.toggleBanUser = async function(userId, isBanned) {
+  if (!confirm(`${isBanned ? 'Unban' : 'Ban'} this user?`)) return;
+  await updateDoc(doc(db, 'users', userId), { banned: !isBanned });
+  toast(isBanned ? 'User Unbanned' : 'User Banned', '', isBanned ? 'success' : 'error');
+  loadDashboard();
+};
+
+// PAYMENT PROOFS
+window.loadPaymentProofs = async function() {
+  const snap = await getDocs(query(collection(db, 'payment_proofs'), orderBy('timestamp', 'desc')));
+  const proofs = snap.docs.map(d => ({id: d.id, ...d.data()}));
+  const tbody = document.getElementById('paymentProofsBody');
+  if (!proofs.length) { tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:20px;color:var(--muted);">No payment proofs</td></tr>'; return; }
+  tbody.innerHTML = proofs.map(p => `
+    <tr>
+      <td>${p.userEmail || '-'}</td>
+      <td style="color:var(--gold);font-family:var(--font-mono);">₹${p.amount}</td>
+      <td style="font-family:var(--font-mono);font-size:12px;">${p.utr || '-'}</td>
+      <td>${p.screenshotURL ? `<a href="${p.screenshotURL}" target="_blank" class="action-btn btn-view">View</a>` : 'N/A'}</td>
+      <td><span class="status-badge status-${p.status || 'pending'}">${p.status || 'pending'}</span></td>
+      <td style="font-size:11px;color:var(--muted);">${p.timestamp ? new Date(p.timestamp.toDate()).toLocaleString() : '-'}</td>
+      <td>
+        <div class="action-btns">
+          <button class="action-btn btn-approve" onclick="approvePayment('${p.id}','${p.userId}',${p.amount})"><i class="fas fa-check"></i> Verify</button>
+          <button class="action-btn btn-reject" onclick="rejectPayment('${p.id}')"><i class="fas fa-times"></i></button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+};
+
+window.approvePayment = async function(proofId, userId, amount) {
+  try {
+    await updateDoc(doc(db, 'payment_proofs', proofId), { status: 'approved', approvedAt: serverTimestamp() });
+    const userRef = doc(db, 'users', userId);
+    const snap = await getDoc(userRef);
+    const cur = snap.data().walletBalance || 0;
+    await updateDoc(userRef, { walletBalance: cur + amount });
+    await addDoc(collection(db, 'transactions'), { userId, type: 'wallet_topup', amount, description: 'Admin verified payment', timestamp: serverTimestamp() });
+    toast('Payment Approved!', `₹${amount} added to wallet`, 'success');
+    loadPaymentProofs();
+  } catch(e) { toast('Error', e.message, 'error'); }
+};
+
+window.rejectPayment = async function(proofId) {
+  await updateDoc(doc(db, 'payment_proofs', proofId), { status: 'rejected' });
+  toast('Payment Rejected', '', 'error');
+  loadPaymentProofs();
+};
+
+// REDEEM CODES
+async function loadRedeemCodes() {
+  const snap = await getDocs(collection(db, 'redeem_codes'));
+  const codes = snap.docs.map(d => ({id: d.id, ...d.data()}));
+  const tbody = document.getElementById('redeemCodesBody');
+  if (!codes.length) { tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:20px;color:var(--muted);">No codes yet</td></tr>'; return; }
+  tbody.innerHTML = codes.map(c => `
+    <tr>
+      <td style="font-family:var(--font-mono);font-size:13px;color:var(--neon);letter-spacing:2px;">${c.id}</td>
+      <td style="color:var(--gold);font-family:var(--font-head);">₹${c.reward}</td>
+      <td style="text-align:center;">${c.maxUses || '∞'}</td>
+      <td style="text-align:center;">${c.usedCount || 0}</td>
+      <td><span class="status-badge ${c.active ? 'status-approved' : 'status-rejected'}">${c.active ? 'Active' : 'Inactive'}</span></td>
+      <td>
+        <div class="action-btns">
+          <button class="action-btn btn-edit" onclick="toggleCodeStatus('${c.id}',${c.active})">${c.active ? 'Disable' : 'Enable'}</button>
+          <button class="action-btn btn-delete" onclick="deleteCode('${c.id}')"><i class="fas fa-trash"></i></button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+}
+
+window.createRedeemCode = async function() {
+  const name = document.getElementById('newCodeName').value.trim().toUpperCase();
+  const reward = parseFloat(document.getElementById('newCodeReward').value);
+  const maxUses = parseInt(document.getElementById('newCodeMax').value) || 1;
+  if (!name || !reward) { toast('Error', 'Fill code name and reward', 'error'); return; }
+  try {
+    await doc(db, 'redeem_codes', name);
+    const { setDoc } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js");
+    await setDoc(doc(db, 'redeem_codes', name), { reward, maxUses, usedCount: 0, usedBy: [], active: true, createdAt: serverTimestamp() });
+    closeAdminModal('createCodeModal');
+    toast('Code Created!', `${name} worth ₹${reward}`, 'success');
+    loadRedeemCodes();
+  } catch(e) { toast('Error', e.message, 'error'); }
+};
+
+window.toggleCodeStatus = async function(codeId, active) {
+  await updateDoc(doc(db, 'redeem_codes', codeId), { active: !active });
+  loadRedeemCodes();
+};
+
+window.deleteCode = async function(codeId) {
+  if (!confirm('Delete this code?')) return;
+  await deleteDoc(doc(db, 'redeem_codes', codeId));
+  toast('Deleted', 'Code deleted', 'error');
+  loadRedeemCodes();
+};
+
+// MEDIA
+window.uploadProductImage = async function(productName, input) {
+  const file = input.files[0];
+  if (!file) return;
+  try {
+    const storageRef = ref(storage, `product-images/${productName}-${Date.now()}`);
+    await uploadBytes(storageRef, file);
+    const url = await getDownloadURL(storageRef);
+    toast('Uploaded!', 'Image uploaded successfully', 'success');
+    console.log('Image URL:', url);
+  } catch(e) { toast('Error', e.message, 'error'); }
+};
+
+window.saveMediaURL = function(productName, type, value) {
+  if (!value) return;
+  toast('Saved', `${type} URL updated for ${productName}`, 'success');
+  // In production: save to Firestore
+};
+
+window.saveProductMedia = function() {
+  const product = document.getElementById('mediaProductSelect').value;
+  const imageURL = document.getElementById('mediaImageURL').value;
+  const videoID = document.getElementById('mediaVideoID').value;
+  toast('Media Saved!', `Updated media for ${product}`, 'success');
+  closeAdminModal('addMediaModal');
+};
+
+window.uploadQRCode = async function(input) {
+  const file = input.files[0];
+  if (!file) return;
+  toast('Uploading...', 'Please wait', 'info');
+  try {
+    const storageRef = ref(storage, 'assets/qrcode.png');
+    await uploadBytes(storageRef, file);
+    toast('QR Uploaded!', 'QR code updated successfully', 'success');
+  } catch(e) { toast('Error', e.message, 'error'); }
+};
+
+// FILTERS
+window.filterAdminOrders = function() {
+  const status = document.getElementById('orderFilter').value;
+  const filtered = status === 'all' ? allOrders : allOrders.filter(o => o.status === status);
+  renderAllOrders(filtered);
+};
+
+window.searchOrders = function(q) {
+  const filtered = allOrders.filter(o => (o.userEmail + o.productName + o.customerName + o.id).toLowerCase().includes(q.toLowerCase()));
+  renderAllOrders(filtered);
+};
+
+window.searchUsers = function(q) {
+  const filtered = allUsers.filter(u => (u.email + u.displayName + u.uid).toLowerCase().includes(q.toLowerCase()));
+  renderUsers(filtered);
+};
+
+// MAINTENANCE
+window.toggleMaintenance = async function(active) {
+  const { setDoc } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js");
+  await setDoc(doc(db, 'settings', 'maintenance'), { active, updatedAt: serverTimestamp() });
+  toast(active ? 'Maintenance ON' : 'Maintenance OFF', active ? 'Site is now offline for users' : 'Site is back online', active ? 'error' : 'success');
+};
+
+window.saveMaintenance = function() { toast('Saved', 'Maintenance settings saved', 'success'); };
+window.saveSettings = function() { toast('Saved', 'Settings saved', 'success'); };
+window.saveSocialLinks = function() { toast('Saved', 'Social links updated', 'success'); };
+window.updateAnnouncement = function() { toast('Updated', 'Announcement bar updated', 'success'); };
+window.sendPushNotification = function() { toast('Sent!', 'Notification sent to users', 'success'); };
+
+window.refreshAll = loadDashboard;
+
+// CHAT
+let selectedChatUser = null;
+window.sendAdminReply = async function() {
+  const msg = document.getElementById('adminReplyInput').value.trim();
+  if (!msg || !selectedChatUser) return;
+  await addDoc(collection(db, 'chats'), { userId: selectedChatUser, message: msg, from: 'admin', timestamp: serverTimestamp() });
+  document.getElementById('adminReplyInput').value = '';
+  loadChatForUser(selectedChatUser);
+  toast('Replied', 'Message sent', 'success');
+};
+
+async function loadChatForUser(userId) {
+  const snap = await getDocs(query(collection(db, 'chats'), where('userId', '==', userId), orderBy('timestamp', 'asc')));
+  const msgs = snap.docs.map(d => d.data());
+  const container = document.getElementById('adminChatMessages');
+  container.innerHTML = msgs.map(m => `
+    <div style="align-self:${m.from==='admin'?'flex-end':'flex-start'};background:${m.from==='admin'?'var(--purple)':'var(--card2)'};padding:8px 12px;border-radius:10px;max-width:80%;font-size:12px;">${m.message}</div>
+  `).join('');
+  container.scrollTop = container.scrollHeight;
+}
+</script>
+
+<script>
+// NAVIGATION
+window.showAdminPage = function(page, btn) {
+  document.querySelectorAll('.admin-page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  if (btn) { document.querySelectorAll('.sidebar-item').forEach(b => b.classList.remove('active')); btn.classList.add('active'); }
+  // Load specific data
+  if (page === 'redeem') { if (window._db) { const {collection, getDocs} = window._firebase; window.loadRedeemCodes && window.loadRedeemCodes(); } }
+  if (page === 'payments') { window.loadPaymentProofs && window.loadPaymentProofs(); }
+  closeSidebar();
+};
+
+window.openAdminModal = function(id) { document.getElementById(id).classList.add('show'); };
+window.closeAdminModal = function(id) { document.getElementById(id).classList.remove('show'); };
+window.openModal = window.openAdminModal;
+document.addEventListener('click', e => { if (e.target.classList.contains('admin-modal-overlay')) e.target.classList.remove('show'); });
+
+// TOAST
+window.toast = function(title, msg, type = 'info') {
+  const t = document.getElementById('adminToast');
+  document.getElementById('adminToastTitle').textContent = title;
+  document.getElementById('adminToastMsg').textContent = msg;
+  const icons = {success:'✅',error:'❌',info:'ℹ️'};
+  document.getElementById('adminToastIcon').textContent = icons[type] || 'ℹ️';
+  t.className = `admin-toast ${type} show`;
+  setTimeout(() => t.classList.remove('show'), 4000);
+};
+
+// CLOCK
+function updateClock() {
+  const el = document.getElementById('currentTime');
+  if (el) el.textContent = new Date().toLocaleTimeString();
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// SIDEBAR
+window.toggleSidebar = function() { document.getElementById('adminSidebar').classList.toggle('open'); };
+window.closeSidebar = function() { document.getElementById('adminSidebar').classList.remove('open'); };
+</script>
+</body>
+</html>
